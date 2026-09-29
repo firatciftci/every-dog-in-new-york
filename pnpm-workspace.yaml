@@ -1,0 +1,16 @@
+minimumReleaseAgeExclude:
+  - "@sveltejs/*"
+  - eslint-plugin-svelte
+  - pnpm
+  - shadcn-svelte
+  - svelte
+  - svelte-check
+
+engineStrict: true
+
+overrides:
+  cookie: 0.7.2
+
+allowBuilds:
+  esbuild: true
+  workerd: true

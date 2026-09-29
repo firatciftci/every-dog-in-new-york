@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>%sveltekit.status% · Every Dog in New York</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f7f5f1"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#110f0b"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="noindex" />
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #1e1b17;
+        --quiet: #747068;
+        --brand: #bc5030;
+        --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.36 0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0.075 0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #110f0b;
+          --ink: #eeede8;
+          --quiet: #a3a097;
+          --brand: #e78558;
+          --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 0.97 0 0 0 0 0.9 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        img {
+          filter: invert(1) brightness(1.35);
+        }
+      }
+
+      body {
+        display: grid;
+        min-height: 100dvh;
+        margin: 0;
+        padding: 3rem 1.25rem;
+        place-items: center;
+        background-color: var(--paper);
+        background-image: var(--grain);
+        color: var(--ink);
+        font-family: Charter, Georgia, serif;
+        text-align: center;
+      }
+
+      main {
+        max-width: 30rem;
+      }
+
+      .code {
+        margin: 0;
+        color: var(--quiet);
+        font-family: Rockwell, Georgia, serif;
+        font-size: 10px;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 1.35rem 0 0;
+        transform: rotate(-1.4deg);
+        color: var(--paper);
+        font-family: Rockwell, Georgia, serif;
+        font-size: clamp(2.6rem, 12vw, 4.4rem);
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        line-height: 0.95;
+        paint-order: stroke fill;
+        text-shadow: 0.055em 0.06em 0 var(--brand);
+        -webkit-text-stroke: 0.055em var(--ink);
+      }
+
+      img {
+        display: block;
+        height: 112px;
+        margin: 2rem auto 0;
+        width: auto;
+      }
+
+      .ground {
+        max-width: 16rem;
+        height: 6px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: var(--brand);
+        opacity: 0.85;
+      }
+
+      p.lede {
+        margin: 1.5rem auto 0;
+        font-size: 15.5px;
+        line-height: 1.65;
+        opacity: 0.85;
+        text-wrap: balance;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 2.25rem;
+        padding: 0.625rem 1.75rem;
+        border-radius: 20px 20px 20px 5px;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: Rockwell, Georgia, serif;
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 var(--brand);
+        transform: rotate(-1deg);
+      }
+
+      .message {
+        display: block;
+        padding-bottom: 0.25rem;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">Error %sveltekit.status%</p>
+      <h1>BAD DOG</h1>
+      <img src="/breeds/bulldog.webp" alt="" />
+      <div class="ground"></div>
+      <p class="lede">
+        <span class="message">%sveltekit.error.message%</span>
+        Nothing you did caused it, and the map is still where you left it.
+      </p>
+      <a href="/">BACK TO THE MAP</a>
+    </main>
+  </body>
+</html>

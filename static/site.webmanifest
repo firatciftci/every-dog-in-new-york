@@ -1,0 +1,21 @@
+{
+  "name": "Every Dog in New York",
+  "short_name": "Every Dog",
+  "description": "New York City's dog license file, mapped onto 197 neighborhoods.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "en-US",
+  "dir": "ltr",
+  "background_color": "#f7f5f1",
+  "theme_color": "#f7f5f1",
+  "categories": ["education", "navigation", "utilities"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
