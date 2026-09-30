@@ -66,9 +66,9 @@
     }
 
     const WORDS: Partial<Record<LayerId, string>> = {
-      density: "most packed",
-      "per-home": "doggiest",
-      "per-person": "doggiest",
+      density: "densest",
+      "per-home": "highest",
+      "per-person": "highest",
       complaints: "most complained about",
     };
 

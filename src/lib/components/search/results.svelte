@@ -72,7 +72,7 @@
 {#if hits.length > 0}
   <div class="flex items-baseline justify-between gap-2">
     <h2 class="slab text-[15px] text-foreground">
-      {explorer.focus == null ? "Still on the map" : "Thickest on the ground"}
+      {explorer.focus == null ? "On the map" : "Where the rate is highest"}
     </h2>
     {#if explorer.filters.length > 0}
       <button

@@ -43,7 +43,7 @@
 
       return [
         named,
-        `runs ${lift(props[row.lift])} its citywide rate, wider than any other ${row.noun}.`,
+        `is ${lift(props[row.lift])} as common here as in the whole city, more than any other ${row.noun}.`,
         ...(mostCommon == null
           ? []
           : [
@@ -83,7 +83,7 @@
         <circle cx="8" cy="6.5" r="6" fill="currentColor" />
         <circle cx="8" cy="6.5" r="3" class="fill-accent" />
       </svg>
-      Who wins here
+      What stands out here
     </h3>
 
     {#if explorer.soaked(props.borough)}

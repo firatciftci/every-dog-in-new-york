@@ -106,13 +106,10 @@
 </script>
 
 <p class="text-[13.5px] text-foreground/85">
-  <strong class="numeric text-[17px] font-bold text-foreground"
+  An estimated <strong class="numeric text-[17px] font-bold text-foreground"
     >{count(props.dogs)}</strong
   >
-  dogs, give or take, across {count(props.people)} people in {count(
-    props.homes,
-  )}
-  homes.
+  dogs live among {count(props.people)} people in {count(props.homes)} homes.
 </p>
 
 {#snippet body(

@@ -163,7 +163,7 @@ export function buildStops(
     {
       title: "The distinctive map",
       leap: { layer: "distinct-breed", filters: [] },
-      template: `Rank by how far each breed runs above its citywide rate instead, and {{distinct}} breeds spread across the map. {{b1}} runs strongest in {{p1}} at {{l1}} its citywide rate, {{b2}} in {{p2}} at {{l2}}, and {{b3}} in {{p3}} at {{l3}}.`,
+      template: `Rank each breed by how far it is above its citywide rate instead, and {{distinct}} different breeds lead somewhere. {{b1}} is {{l1}} as common in {{p1}} as in the whole city, {{b2}} {{l2}} in {{p2}}, and {{b3}} {{l3}} in {{p3}}.`,
       slots: {
         distinct: figure(count(distinctBreeds)),
         ...Object.fromEntries(
@@ -202,7 +202,7 @@ export function buildStops(
         layer: "per-home",
         filters: [atLeast("dogs_per_100_homes", homesMin)],
       },
-      template: `Raw dog counts mostly follow population. Per 100 homes, {{leader}} leads at {{rate}}. Drag the number {{dial}} to set a floor, and {{kept}} neighborhoods stay lit.`,
+      template: `Raw dog counts mostly follow population. Per 100 homes, {{leader}} leads at {{rate}}. Drag the number {{dial}} to set a minimum, and the map shows the {{kept}} neighborhoods at or above it.`,
       slots: {
         leader: leader == null ? "nowhere" : toPlace(leader, doors),
         rate: figure((leader?.dogs_per_100_homes ?? 0).toFixed(1)),
@@ -231,7 +231,7 @@ export function buildStops(
         layer: "complaints",
         filters: [atLeast("complaints_per_100_dogs", gripesMin)],
       },
-      template: `Divide dog complaints to 311 by the licensed dogs living there, and {{most}} leads at {{mostRate}} per 100 dogs while {{least}} is lowest at {{leastRate}}. Drag the number {{dial}} to set a floor, and {{kept}} neighborhoods stay lit.`,
+      template: `Divide dog complaints to 311 by the licensed dogs living there, and {{most}} leads at {{mostRate}} per 100 dogs while {{least}} is lowest at {{leastRate}}. Drag the number {{dial}} to set a minimum, and the map shows the {{kept}} neighborhoods at or above it.`,
       slots: {
         most: most == null ? "nowhere" : toPlace(most, doors),
         mostRate: figure((most?.complaints_per_100_dogs ?? 0).toFixed(1)),

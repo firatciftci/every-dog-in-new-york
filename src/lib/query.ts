@@ -147,9 +147,9 @@ const RANGE_WORDS = {
     tail: "dogs",
   },
   density: {
-    over: "packed tighter than",
-    under: "packed thinner than",
-    span: "packed",
+    over: "with more than",
+    under: "with fewer than",
+    span: "with",
     tail: "dogs per square mile",
   },
   people: {
@@ -159,10 +159,10 @@ const RANGE_WORDS = {
     tail: "people",
   },
   dogs_per_100_homes: {
-    over: "where more than",
-    under: "where fewer than",
-    span: "where",
-    tail: "homes in 100 keep a dog",
+    over: "with more than",
+    under: "with fewer than",
+    span: "with",
+    tail: "dogs per 100 homes",
   },
   complaints_per_100_dogs: {
     over: "drawing more than",
@@ -517,7 +517,7 @@ function noteFor(
   const home = thickest(column, ctx, named);
   const head = `${count(total)} in the city`;
 
-  return home == null ? head : `${head}, thickest in ${home}`;
+  return home == null ? head : `${head}, highest rate in ${home}`;
 }
 
 const GROUP_CAP = 6;

@@ -87,7 +87,7 @@
         {/each}
       </span>
       {explorer.filters.length > 0
-        ? "Still on the map"
+        ? "On the map"
         : "The whole city"}&#8239;<span
         class="numeric text-[10.5px] text-muted-foreground"
         >{count(painted.standing.length)}</span

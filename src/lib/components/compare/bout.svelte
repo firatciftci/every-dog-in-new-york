@@ -171,7 +171,7 @@
             {count(tale.leads[i] ?? 0)}</span
           >{(tale.leads[i] ?? 0) === 1
             ? " neighborhood"
-            : " neighborhoods"}{#if seat != null}, thickest in
+            : " neighborhoods"}{#if seat != null}, highest rate in
             <button
               type="button"
               class="text-left font-display font-semibold text-foreground underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:decoration-primary"

@@ -23,7 +23,7 @@
       facet: null,
       modes: [
         { label: "how many", layer: "dogs" },
-        { label: "how packed", layer: "density" },
+        { label: "per square mile", layer: "density" },
         { label: "per home", layer: "per-home" },
         { label: "per person", layer: "per-person" },
         { label: "on 311", layer: "complaints" },

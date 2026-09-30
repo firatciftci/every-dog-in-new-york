@@ -18,7 +18,7 @@
   <span class="flex items-baseline gap-1.5">
     <span
       class="slab text-[15px] text-foreground transition-colors duration-200 group-hover:text-primary"
-      >{filtering ? "Still on the map" : "The whole city"}</span
+      >{filtering ? "On the map" : "The whole city"}</span
     >
     <span
       aria-hidden="true"
