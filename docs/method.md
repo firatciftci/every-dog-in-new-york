@@ -28,12 +28,12 @@ A few NTA names are administrative, such as `Breezy Point-Belle Harbor-Rockaway 
 
 A count of dogs mostly tracks population. Across the 197 neighborhoods, dogs correlate with population at Spearman 0.50. Divide by homes and the correlation drops to −0.08, and a different city comes up.
 
-| layer      | what it measures            | leader                                   |
-| ---------- | --------------------------- | ---------------------------------------- |
-| how many   | dogs                        | Upper West Side (Central), 2,663         |
-| how packed | dogs per square mile        | Upper East Side-Yorkville, 4,594         |
-| per home   | dogs per 100 occupied homes | Downtown Brooklyn-DUMBO-Boerum Hill, 6.5 |
-| per person | dogs per 1,000 residents    | Long Island City-Hunters Point, 33.7     |
+| layer           | what it measures            | leader                                   |
+| --------------- | --------------------------- | ---------------------------------------- |
+| how many        | dogs                        | Upper West Side (Central), 2,663         |
+| per square mile | dogs per square mile        | Upper East Side-Yorkville, 4,594         |
+| per home        | dogs per 100 occupied homes | Downtown Brooklyn-DUMBO-Boerum Hill, 6.5 |
+| per person      | dogs per 1,000 residents    | Long Island City-Hunters Point, 33.7     |
 
 Per home is the better measure, because a dog lives with a household. The two measures split where households are small: Long Island City leads per person but ranks third per home, and Midtown-Times Square ranks fifth per person and sixteenth per home. Citywide there is one licensed dog for every 35 homes.
 

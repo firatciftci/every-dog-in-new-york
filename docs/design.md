@@ -208,7 +208,7 @@ most common · most distinctive
 The breed with the most dogs here.
 ```
 
-`Dogs` swaps the second row for `how many · how packed · per home · per person · on 311`. The chosen question survives a change of subject, so distinctive breeds go to distinctive names. The third line is the gloss for the current choice.
+`Dogs` swaps the second row for `how many · per square mile · per home · per person · on 311`. The chosen question survives a change of subject, so distinctive breeds go to distinctive names. The third line is the gloss for the current choice.
 
 ## The controls
 
@@ -218,7 +218,7 @@ The colophon signs the work with the dog source, the basemap license, and links 
 
 ## What we refuse
 
-- **Micro-labels.** A 10px uppercase caption over a value is the loudest tell of a generated interface. Write the sentence instead: "2,151 dogs, give or take."
+- **Micro-labels.** A 10px uppercase caption over a value is the loudest tell of a generated interface. Write the sentence instead: "An estimated 968 dogs live among 38,980 people in 18,703 homes."
 - **A flat type scale.** The hero figure is `clamp(1.9rem, 3.4vw, 2.6rem)` against 13.5px body.
 - **A weight ramp, large radii on containers, big ambient shadows on flat UI, and decorative gradients.**
 - **Color-change hovers.** No `hover:bg-muted`, no `scale(1.02)`, and no shadow upgrade. Opacity and color of ink, or nothing.
