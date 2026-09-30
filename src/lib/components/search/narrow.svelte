@@ -67,7 +67,7 @@
     );
 
     return {
-      lead: "Skip the ones with hardly any dogs",
+      lead: "Hide the quarter with the fewest dogs",
       tail: "",
       filter: { kind: "range", metric, min: floor, max: null } satisfies Filter,
     };
@@ -77,7 +77,7 @@
     const rate = totals(hoods.features.map((f) => f.properties)).perHome;
 
     return {
-      lead: "Where dogs per home beat the citywide rate",
+      lead: "Above the citywide rate of dogs per home",
       tail: "",
       filter: {
         kind: "range",
@@ -119,7 +119,7 @@
     const offers = [
       {
         lead: "Where",
-        tail: "beats the citywide rate",
+        tail: "is above its citywide rate",
         filter: {
           kind: "range",
           metric: rate,
@@ -220,11 +220,11 @@
 
     {#if cuts.length > 0}
       <div class="mt-3.5 flex items-baseline justify-between gap-2 px-1.5">
-        <h3 class="slab text-[12.5px] text-foreground">Cut it down</h3>
+        <h3 class="slab text-[12.5px] text-foreground">Quick filters</h3>
         <span
           aria-hidden="true"
           class="shrink-0 text-[10.5px] text-muted-foreground"
-          >how many stay</span
+          >neighborhoods left</span
         >
       </div>
 
@@ -251,7 +251,7 @@
                   />{" "}{cut.tail}{/if}
               </span>
               <span class="shrink-0 numeric text-[11px] text-muted-foreground">
-                {count(cut.n)}<span class="sr-only"> stay</span>
+                {count(cut.n)}<span class="sr-only"> left</span>
               </span>
             </button>
 
