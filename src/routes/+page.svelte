@@ -25,7 +25,7 @@
 
 <script lang="ts">
   import { browser } from "$app/env";
-  import { replaceState } from "$app/navigation";
+  import { afterNavigate, goto } from "$app/navigation";
   import { page } from "$app/state";
   import { mode } from "mode-watcher";
   import { useSearchParams } from "runed/kit";
@@ -84,12 +84,20 @@
     const play = page.url.searchParams.get("play");
     if (play === "central" || play === "prospect") {
       explorer.game = play;
-      const url = new URL(page.url);
-      url.searchParams.delete("play");
-      // Same page, minus one param: there is no route to resolve, and history.replaceState fights the router.
-      // eslint-disable-next-line svelte/no-navigation-without-resolve
-      replaceState(url, page.state);
     }
+  });
+
+  afterNavigate(() => {
+    if (!page.url.searchParams.has("play")) {
+      return;
+    }
+
+    const url = new URL(page.url);
+    url.searchParams.delete("play");
+    // Same page, minus one param: there is no route to resolve, and history.replaceState fights the router.
+    // replaceState() would throw here: the router is not started until the enter callbacks return.
+    // eslint-disable-next-line svelte/no-navigation-without-resolve
+    void goto(url, { replaceState: true, keepFocus: true, noScroll: true });
   });
 
   const painted = $derived(
