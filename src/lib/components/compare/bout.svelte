@@ -1,23 +1,23 @@
 <script lang="ts">
   import { PawPrintIcon } from "@lucide/svelte";
-  import type { Ledger, Tale } from "$lib/compare";
-  import type { Part } from "$lib/sentence";
-  import type { HoodProperties, Matrix } from "$lib/types";
+  import type { Ledger, Tale } from "#lib/compare.js";
+  import type { Part } from "#lib/sentence.js";
+  import type { HoodProperties, Matrix } from "#lib/types.js";
   import {
     crosstab,
     ledgers,
     lopsided,
     MEASURES,
     tale as taleOf,
-  } from "$lib/compare";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import { rivalColor } from "$lib/layers";
-  import { rateFormat } from "$lib/query";
-  import { liftWeight } from "$lib/rate";
-  import { figure, place } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  } from "#lib/compare.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import { rivalColor } from "#lib/layers.js";
+  import { rateFormat } from "#lib/query.js";
+  import { liftWeight } from "#lib/rate.js";
+  import { figure, place } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
   import Dumbbell from "./dumbbell.svelte";
 
   let {

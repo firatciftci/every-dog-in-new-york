@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { Filter, Metric } from "$lib/query";
-  import type { HoodCollection, Matrix } from "$lib/types";
-  import Brine from "$lib/components/brand/brine.svelte";
-  import Chip from "$lib/components/chrome/chip.svelte";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
+  import type { Filter, Metric } from "#lib/query.js";
+  import type { HoodCollection, Matrix } from "#lib/types.js";
+  import Brine from "#lib/components/brand/brine.svelte";
+  import Chip from "#lib/components/chrome/chip.svelte";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
   import {
     BOROUGHS,
     distribution,
@@ -12,10 +12,10 @@
     matching,
     metricReader,
     wouldKeep,
-  } from "$lib/query";
-  import { cityRate, totals } from "$lib/rate";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  } from "#lib/query.js";
+  import { cityRate, totals } from "#lib/rate.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
   import RangeEditor from "./range-editor.svelte";
   import Sink from "./sink.svelte";
 

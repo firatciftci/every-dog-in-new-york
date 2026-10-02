@@ -1,10 +1,10 @@
 <script lang="ts">
   import { TriangleAlertIcon } from "@lucide/svelte";
   import { fade, fly } from "svelte/transition";
-  import type { System } from "$lib/rail";
-  import { RAILROAD } from "$lib/rail";
-  import { signName } from "$lib/trains";
-  import { cn, tw } from "$lib/utils";
+  import type { System } from "#lib/rail.js";
+  import { RAILROAD } from "#lib/rail.js";
+  import { signName } from "#lib/trains.js";
+  import { cn, tw } from "#lib/utils.js";
   import Bullet from "./bullet.svelte";
   import Goldfinch from "./goldfinch.svelte";
 

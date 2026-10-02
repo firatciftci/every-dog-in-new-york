@@ -24,7 +24,7 @@
 </script>
 
 <script lang="ts">
-  import type { Summary } from "$lib/types";
+  import type { Summary } from "#lib/types.js";
 
   let { summary }: { summary: Summary } = $props();
 

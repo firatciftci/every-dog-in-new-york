@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { Detent, SheetGrip } from "$lib/types";
+  import type { Detent, SheetGrip } from "#lib/types.js";
 
   export const DETENTS: ReadonlyArray<Detent> = ["shut", "peek", "full"];
 

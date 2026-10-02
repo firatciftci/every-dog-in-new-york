@@ -11,17 +11,17 @@
   import { on } from "svelte/events";
   import { MediaQuery, SvelteMap, SvelteSet } from "svelte/reactivity";
   import { fade, fly } from "svelte/transition";
-  import type { GameEvent, Tone } from "$lib/game/events";
-  import type { Cam } from "$lib/game/ink";
-  import type { ParkId, Tag } from "$lib/game/parks";
-  import type { MapTheme } from "$lib/map-style";
-  import type { Rider } from "$lib/types";
-  import { plateUrl } from "$lib/breeds";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import { DashGame } from "$lib/game/dash";
-  import { PALETTES } from "$lib/game/ink";
-  import { kennel } from "$lib/game/kennel.svelte";
-  import { offLeash } from "$lib/game/off-leash";
+  import type { GameEvent, Tone } from "#lib/game/events.js";
+  import type { Cam } from "#lib/game/ink.js";
+  import type { ParkId, Tag } from "#lib/game/parks.js";
+  import type { MapTheme } from "#lib/map-style.js";
+  import type { Rider } from "#lib/types.js";
+  import { plateUrl } from "#lib/breeds.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import { DashGame } from "#lib/game/dash.js";
+  import { PALETTES } from "#lib/game/ink.js";
+  import { kennel } from "#lib/game/kennel.svelte.js";
+  import { offLeash } from "#lib/game/off-leash.js";
   import {
     conditionsOf,
     PARKS,
@@ -33,12 +33,12 @@
     shareText,
     TAGS,
     todayKey,
-  } from "$lib/game/parks";
-  import { shareCard } from "$lib/game/sharecard";
-  import { sound } from "$lib/game/sound.svelte";
-  import { TRAIT_WORD, traitOf, WalkerGame } from "$lib/game/walker";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  } from "#lib/game/parks.js";
+  import { shareCard } from "#lib/game/sharecard.js";
+  import { sound } from "#lib/game/sound.svelte.js";
+  import { TRAIT_WORD, traitOf, WalkerGame } from "#lib/game/walker.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
   import Clock from "./clock.svelte";
   import CollarTags from "./collar-tags.svelte";
 

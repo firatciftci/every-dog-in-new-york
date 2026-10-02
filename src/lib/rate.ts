@@ -1,4 +1,4 @@
-import type { Facet, HoodProperties } from "$lib/types";
+import type { Facet, HoodProperties } from "#lib/types.js";
 
 /**
  * Must match NAME_PRIOR and BREED_PRIOR in pipeline/build_data.py, or a panel

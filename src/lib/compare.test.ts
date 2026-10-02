@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import type { HoodProperties, Matrix } from "$lib/types";
-import { ledgers } from "$lib/compare";
-import { FACET_FIELDS, FACETS } from "$lib/types";
+import type { HoodProperties, Matrix } from "#lib/types.js";
+import { ledgers } from "#lib/compare.js";
+import { FACET_FIELDS, FACETS } from "#lib/types.js";
 
 const shipped = JSON.parse(
   readFileSync("static/data/neighborhoods.topo.json", "utf8"),

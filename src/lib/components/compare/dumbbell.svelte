@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { Round, Tale } from "$lib/compare";
-  import { rivalColor } from "$lib/layers";
-  import { rateFormat } from "$lib/query";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import type { Round, Tale } from "#lib/compare.js";
+  import { rivalColor } from "#lib/layers.js";
+  import { rateFormat } from "#lib/query.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     tale,

@@ -1,4 +1,4 @@
-import { fetchJson } from "$lib/data";
+import { fetchJson } from "#lib/data.js";
 
 export type Snapshot = {
   thumb: string;

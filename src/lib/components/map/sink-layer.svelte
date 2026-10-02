@@ -2,8 +2,8 @@
   import type { Point, FeatureCollection as Points } from "geojson";
   import { FillLayer, GeoJSON, LineLayer, SymbolLayer } from "svelte-maplibre";
   import { MediaQuery } from "svelte/reactivity";
-  import type { Ink } from "$lib/map-style";
-  import { FONT_ITALIC } from "$lib/map-style";
+  import type { Ink } from "#lib/map-style.js";
+  import { FONT_ITALIC } from "#lib/map-style.js";
   import type { SunkShapes } from "./tide";
   import Splash from "./splash.svelte";
   import { SWELL } from "./tide";

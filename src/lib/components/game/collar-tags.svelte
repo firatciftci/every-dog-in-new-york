@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Tag } from "$lib/game/parks";
-  import { cn } from "$lib/utils";
+  import type { Tag } from "#lib/game/parks.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     tags,

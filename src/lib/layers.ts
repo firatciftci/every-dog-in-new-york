@@ -1,6 +1,6 @@
-import type { Rival } from "$lib/compare";
-import type { MapTheme } from "$lib/map-style";
-import type { Filter, Metric } from "$lib/query";
+import type { Rival } from "#lib/compare.js";
+import type { MapTheme } from "#lib/map-style.js";
+import type { Filter, Metric } from "#lib/query.js";
 import type {
   CatKey,
   Facet,
@@ -13,16 +13,16 @@ import type {
   PaintedProperties,
   Readout,
   View,
-} from "$lib/types";
+} from "#lib/types.js";
 import {
   filterKey,
   matching,
   metricReader,
   quantileOf,
   rateFormat,
-} from "$lib/query";
-import { FACET_FIELDS } from "$lib/types";
-import { count, lift } from "$lib/utils";
+} from "#lib/query.js";
+import { FACET_FIELDS } from "#lib/types.js";
+import { count, lift } from "#lib/utils.js";
 
 // Hex, because MapLibre cannot parse oklch().
 const CATEGORY = {

@@ -1,13 +1,13 @@
 import { browser } from "$app/env";
-import type { Rival } from "$lib/compare";
-import type { Filter } from "$lib/query";
-import type { Part } from "$lib/sentence";
-import type { Shared } from "$lib/share";
-import type { HoodProperties } from "$lib/types";
-import { boutOf, rivalName } from "$lib/compare";
-import { layerDef } from "$lib/layers";
-import { facetOfField, filterParts } from "$lib/query";
-import { chip, place } from "$lib/sentence";
+import type { Rival } from "#lib/compare.js";
+import type { Filter } from "#lib/query.js";
+import type { Part } from "#lib/sentence.js";
+import type { Shared } from "#lib/share.js";
+import type { HoodProperties } from "#lib/types.js";
+import { boutOf, rivalName } from "#lib/compare.js";
+import { layerDef } from "#lib/layers.js";
+import { facetOfField, filterParts } from "#lib/query.js";
+import { chip, place } from "#lib/sentence.js";
 
 const STORE = "edny:saved";
 

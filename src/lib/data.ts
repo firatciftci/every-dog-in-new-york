@@ -12,8 +12,8 @@ import type {
   ParkLabels,
   Rider,
   Summary,
-} from "$lib/types";
-import { plateOf } from "$lib/breeds";
+} from "#lib/types.js";
+import { plateOf } from "#lib/breeds.js";
 
 export async function fetchJson<T>(
   fetcher: typeof fetch,

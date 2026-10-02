@@ -62,9 +62,9 @@
 </script>
 
 <script lang="ts">
-  import Brine from "$lib/components/brand/brine.svelte";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import Brine from "#lib/components/brand/brine.svelte";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   const wet = $derived(explorer.dripping);
 </script>

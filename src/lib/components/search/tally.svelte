@@ -11,11 +11,11 @@
 
 <script lang="ts">
   import { MediaQuery } from "svelte/reactivity";
-  import type { Painted } from "$lib/layers";
-  import Tooltip from "$lib/components/map/tooltip.svelte";
-  import { BOROUGHS } from "$lib/query";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import Tooltip from "#lib/components/map/tooltip.svelte";
+  import { BOROUGHS } from "#lib/query.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
 
   let {
     painted,

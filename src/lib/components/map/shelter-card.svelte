@@ -3,11 +3,11 @@
 </script>
 
 <script lang="ts">
-  import type { Shelter } from "$lib/types";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import Dialog from "$lib/components/chrome/dialog.svelte";
-  import { DOORWAY, KENNEL } from "$lib/kennel";
-  import { explorer } from "$lib/state.svelte";
+  import type { Shelter } from "#lib/types.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import Dialog from "#lib/components/chrome/dialog.svelte";
+  import { DOORWAY, KENNEL } from "#lib/kennel.js";
+  import { explorer } from "#lib/state.svelte.js";
 
   let { place }: { place: Shelter } = $props();
 

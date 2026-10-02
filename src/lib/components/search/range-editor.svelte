@@ -1,16 +1,16 @@
 <script lang="ts">
-  import type { Filter } from "$lib/query";
-  import type { HoodCollection, Matrix } from "$lib/types";
-  import { Slider } from "$lib/components/ui/slider";
+  import type { Filter } from "#lib/query.js";
+  import type { HoodCollection, Matrix } from "#lib/types.js";
+  import { Slider } from "#lib/components/ui/slider/index.js";
   import {
     distribution,
     filterParts,
     metricFormat,
     metricStep,
-  } from "$lib/query";
-  import { partsText } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  } from "#lib/query.js";
+  import { partsText } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     filter,

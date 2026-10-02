@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { System } from "$lib/rail";
-  import { inkOn } from "$lib/rail";
-  import { cn } from "$lib/utils";
+  import type { System } from "#lib/rail.js";
+  import { inkOn } from "#lib/rail.js";
+  import { cn } from "#lib/utils.js";
   import NjIcon from "./nj-icon.svelte";
 
   let {

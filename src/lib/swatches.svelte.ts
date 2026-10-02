@@ -1,7 +1,7 @@
 import { Context } from "runed";
-import type { Facet } from "$lib/types";
-import { layerDef } from "$lib/layers";
-import { explorer } from "$lib/state.svelte";
+import type { Facet } from "#lib/types.js";
+import { layerDef } from "#lib/layers.js";
+import { explorer } from "#lib/state.svelte.js";
 
 export type Swatches = Record<Facet, Map<string, string>>;
 

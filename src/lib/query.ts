@@ -1,5 +1,5 @@
-import type { Rival } from "$lib/compare";
-import type { Part } from "$lib/sentence";
+import type { Rival } from "#lib/compare.js";
+import type { Part } from "#lib/sentence.js";
 import type {
   CategoryField,
   Facet,
@@ -9,11 +9,11 @@ import type {
   LayerId,
   Matrix,
   Shelter,
-} from "$lib/types";
-import { cityRate } from "$lib/rate";
-import { chip, figure, place } from "$lib/sentence";
-import { FACET_FIELDS, FACETS } from "$lib/types";
-import { count } from "$lib/utils";
+} from "#lib/types.js";
+import { cityRate } from "#lib/rate.js";
+import { chip, figure, place } from "#lib/sentence.js";
+import { FACET_FIELDS, FACETS } from "#lib/types.js";
+import { count } from "#lib/utils.js";
 
 export const BOROUGHS = [
   "Manhattan",

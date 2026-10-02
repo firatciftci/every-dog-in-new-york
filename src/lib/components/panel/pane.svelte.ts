@@ -1,7 +1,7 @@
 import { mode } from "mode-watcher";
-import type { Painted } from "$lib/layers";
-import type { HoodDetail, PaintedProperties, Shelter } from "$lib/types";
-import { explorer } from "$lib/state.svelte";
+import type { Painted } from "#lib/layers.js";
+import type { HoodDetail, PaintedProperties, Shelter } from "#lib/types.js";
+import { explorer } from "#lib/state.svelte.js";
 
 export function paneOf(
   read: () => {

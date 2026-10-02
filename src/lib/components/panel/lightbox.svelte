@@ -20,12 +20,12 @@
 <script lang="ts">
   import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/svelte";
   import { MediaQuery } from "svelte/reactivity";
-  import type { Snapshot } from "$lib/photos";
-  import type { Lightbox } from "$lib/types";
-  import Dialog from "$lib/components/chrome/dialog.svelte";
-  import { photosOf } from "$lib/photos";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import type { Snapshot } from "#lib/photos.js";
+  import type { Lightbox } from "#lib/types.js";
+  import Dialog from "#lib/components/chrome/dialog.svelte";
+  import { photosOf } from "#lib/photos.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let { open }: { open: Lightbox } = $props();
 

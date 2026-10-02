@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { HELP } from "$lib/help";
-  import { explorer } from "$lib/state.svelte";
+  import { HELP } from "#lib/help.js";
+  import { explorer } from "#lib/state.svelte.js";
   import Dialog from "./dialog.svelte";
 </script>
 

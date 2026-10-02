@@ -32,8 +32,8 @@
 </script>
 
 <script lang="ts">
-  import Plate from "$lib/components/brand/plate.svelte";
-  import { cn, count } from "$lib/utils";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import { cn, count } from "#lib/utils.js";
 
   let {
     breed = "Labrador (or Crossbreed)",

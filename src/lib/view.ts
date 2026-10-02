@@ -1,10 +1,10 @@
-import type { Rival } from "$lib/compare";
-import type { Filter } from "$lib/query";
-import type { Focus, LayerId, View } from "$lib/types";
-import { boutOf } from "$lib/compare";
-import { layerDef, layerOfField } from "$lib/layers";
-import { facetOfField, filterKey } from "$lib/query";
-import { FACET_FIELDS } from "$lib/types";
+import type { Rival } from "#lib/compare.js";
+import type { Filter } from "#lib/query.js";
+import type { Focus, LayerId, View } from "#lib/types.js";
+import { boutOf } from "#lib/compare.js";
+import { layerDef, layerOfField } from "#lib/layers.js";
+import { facetOfField, filterKey } from "#lib/query.js";
+import { FACET_FIELDS } from "#lib/types.js";
 
 export type Asked = {
   layer: LayerId;

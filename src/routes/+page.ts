@@ -10,8 +10,8 @@ import type {
   SubwayLines,
   SubwayStations,
   Summary,
-} from "$lib/types";
-import { fetchJson, fetchTopology } from "$lib/data";
+} from "#lib/types.js";
+import { fetchJson, fetchTopology } from "#lib/data.js";
 import type { PageLoad } from "./$types";
 
 const SUBWAY = "/data/subway.topo.json";

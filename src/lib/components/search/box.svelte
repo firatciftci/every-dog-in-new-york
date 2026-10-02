@@ -1,15 +1,15 @@
 <script lang="ts">
   import { CircleQuestionMarkIcon, SearchIcon, XIcon } from "@lucide/svelte";
   import { untrack } from "svelte";
-  import type { Plan } from "$lib/ask";
-  import type { Rival } from "$lib/compare";
-  import type { Hit, HitKind } from "$lib/query";
-  import type { HoodCollection, Matrix, Shelter } from "$lib/types";
-  import { nextWords, read, saying } from "$lib/ask";
-  import { boutFor, boutOf, rivalName } from "$lib/compare";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import { DOORWAY, KENNEL } from "$lib/kennel";
+  import type { Plan } from "#lib/ask.js";
+  import type { Rival } from "#lib/compare.js";
+  import type { Hit, HitKind } from "#lib/query.js";
+  import type { HoodCollection, Matrix, Shelter } from "#lib/types.js";
+  import { nextWords, read, saying } from "#lib/ask.js";
+  import { boutFor, boutOf, rivalName } from "#lib/compare.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import { DOORWAY, KENNEL } from "#lib/kennel.js";
   import {
     facetOf,
     groupsOf,
@@ -17,10 +17,10 @@
     picks,
     strange,
     suggest,
-  } from "$lib/query";
-  import { scrollEdges } from "$lib/scroll";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  } from "#lib/query.js";
+  import { scrollEdges } from "#lib/scroll.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     hoods,

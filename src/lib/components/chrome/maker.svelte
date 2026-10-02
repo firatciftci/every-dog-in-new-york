@@ -1,9 +1,9 @@
 <script lang="ts">
   import { AudioLinesIcon, Volume2Icon } from "@lucide/svelte";
-  import Shahmaran from "$lib/components/brand/shahmaran.svelte";
-  import Dialog from "$lib/components/chrome/dialog.svelte";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import Shahmaran from "#lib/components/brand/shahmaran.svelte";
+  import Dialog from "#lib/components/chrome/dialog.svelte";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   const address = ["firat", "firatciftci.com"].join("@");
   const mailto = `mailto:${address}?subject=${encodeURIComponent("Hello Firat, your dog map brought me here")}`;

@@ -1,10 +1,10 @@
-import type { Rival } from "$lib/compare";
-import type { Filter, NumericField, SuggestContext } from "$lib/query";
-import type { Part } from "$lib/sentence";
-import type { Focus } from "$lib/types";
-import { boutOf } from "$lib/compare";
-import { BOROUGHS, filterParts, loudness, score } from "$lib/query";
-import { place } from "$lib/sentence";
+import type { Rival } from "#lib/compare.js";
+import type { Filter, NumericField, SuggestContext } from "#lib/query.js";
+import type { Part } from "#lib/sentence.js";
+import type { Focus } from "#lib/types.js";
+import { boutOf } from "#lib/compare.js";
+import { BOROUGHS, filterParts, loudness, score } from "#lib/query.js";
+import { place } from "#lib/sentence.js";
 
 const VERSUS = /\s+(?:vs\.?|versus|v\.?)\s+/i;
 

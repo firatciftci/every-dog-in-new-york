@@ -1,11 +1,11 @@
 <script lang="ts">
   import { innerHeight, innerWidth } from "svelte/reactivity/window";
-  import type { PaintedProperties } from "$lib/types";
-  import Brine from "$lib/components/brand/brine.svelte";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import { readout } from "$lib/layers";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { PaintedProperties } from "#lib/types.js";
+  import Brine from "#lib/components/brand/brine.svelte";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import { readout } from "#lib/layers.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
 
   let { props, x, y }: { props: PaintedProperties; x: number; y: number } =
     $props();

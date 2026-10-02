@@ -91,10 +91,10 @@
 <script lang="ts">
   import { browser } from "$app/env";
   import { fade } from "svelte/transition";
-  import type { Scene } from "$lib/skyline";
-  import { plateUrl } from "$lib/breeds";
-  import { SCENES } from "$lib/skyline";
-  import { cn, count } from "$lib/utils";
+  import type { Scene } from "#lib/skyline.js";
+  import { plateUrl } from "#lib/breeds.js";
+  import { SCENES } from "#lib/skyline.js";
+  import { cn, count } from "#lib/utils.js";
 
   let {
     styled,

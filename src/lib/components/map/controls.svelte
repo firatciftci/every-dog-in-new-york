@@ -3,10 +3,10 @@
   import { LayersIcon, MinusIcon, PlusIcon } from "@lucide/svelte";
   import { MediaQuery } from "svelte/reactivity";
   import { fly, slide } from "svelte/transition";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import Daylight from "$lib/components/chrome/daylight.svelte";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import Daylight from "#lib/components/chrome/daylight.svelte";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
   import { draw } from "./draw.svelte";
 
   let { map, onhome }: { map: MapLibreMap; onhome: () => void } = $props();

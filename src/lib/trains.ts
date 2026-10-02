@@ -1,13 +1,13 @@
-import type { System } from "$lib/rail";
+import type { System } from "#lib/rail.js";
 import type {
   RailLines,
   RailStations,
   Rider,
   SubwayLines,
   SubwayStations,
-} from "$lib/types";
-import { delaysFor, FAR_SIGN, railColor, SIGN_AS } from "$lib/rail";
-import { ROUTE_COLOR } from "$lib/subway";
+} from "#lib/types.js";
+import { delaysFor, FAR_SIGN, railColor, SIGN_AS } from "#lib/rail.js";
+import { ROUTE_COLOR } from "#lib/subway.js";
 
 /**
  * at is meters along the run from the first stop.

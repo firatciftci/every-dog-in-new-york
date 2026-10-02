@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Shahmaran from "$lib/components/brand/shahmaran.svelte";
-  import { explorer } from "$lib/state.svelte";
+  import Shahmaran from "#lib/components/brand/shahmaran.svelte";
+  import { explorer } from "#lib/state.svelte.js";
 </script>
 
 <footer class="shrink-0 border-t rule px-5 py-2.5">

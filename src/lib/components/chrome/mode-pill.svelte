@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { explorer } from "$lib/state.svelte";
+  import { explorer } from "#lib/state.svelte.js";
 
   let shown = $state<string | null>(null);
   let first = true;

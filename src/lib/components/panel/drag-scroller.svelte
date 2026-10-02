@@ -2,7 +2,7 @@
   import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import { on } from "svelte/events";
-  import { cn } from "$lib/utils";
+  import { cn } from "#lib/utils.js";
 
   let {
     children,

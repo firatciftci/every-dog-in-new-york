@@ -3,10 +3,10 @@
   import { watch } from "runed";
   import { Marker } from "svelte-maplibre";
   import { on } from "svelte/events";
-  import type { OnHover, Shelter } from "$lib/types";
-  import { DOORWAY, KENNEL } from "$lib/kennel";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import type { OnHover, Shelter } from "#lib/types.js";
+  import { DOORWAY, KENNEL } from "#lib/kennel.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
   import type { Camera, Padding } from "./camera";
 
   let {

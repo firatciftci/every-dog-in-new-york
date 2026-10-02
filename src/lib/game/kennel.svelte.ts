@@ -1,6 +1,6 @@
 import { browser } from "$app/env";
-import type { Kennel, ParkId } from "$lib/game/parks";
-import { todayKey, yesterdayKey } from "$lib/game/parks";
+import type { Kennel, ParkId } from "#lib/game/parks.js";
+import { todayKey, yesterdayKey } from "#lib/game/parks.js";
 
 const STORE = "edny:kennel";
 

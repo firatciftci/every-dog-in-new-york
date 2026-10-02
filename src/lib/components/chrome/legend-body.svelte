@@ -1,10 +1,10 @@
 <script lang="ts">
   import { ChevronDownIcon, PawPrintIcon } from "@lucide/svelte";
-  import type { Painted } from "$lib/layers";
-  import type { CatKey } from "$lib/types";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { CatKey } from "#lib/types.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
 
   let {
     painted,

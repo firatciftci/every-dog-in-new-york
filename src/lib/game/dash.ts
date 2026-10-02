@@ -1,4 +1,4 @@
-import { count } from "$lib/utils";
+import { count } from "#lib/utils.js";
 import type { Emit } from "./events";
 import type { Cam, Palette } from "./ink";
 import type { OffLeash } from "./off-leash";

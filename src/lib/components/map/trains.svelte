@@ -4,15 +4,15 @@
   import { on } from "svelte/events";
   import { MediaQuery } from "svelte/reactivity";
   import { fade } from "svelte/transition";
-  import type { Car, Line } from "$lib/trains";
+  import type { Car, Line } from "#lib/trains.js";
   import type {
     RailLines,
     RailStations,
     Rider,
     SubwayLines,
     SubwayStations,
-  } from "$lib/types";
-  import { boardingAt, buildLines, crew, pick, pointAt } from "$lib/trains";
+  } from "#lib/types.js";
+  import { boardingAt, buildLines, crew, pick, pointAt } from "#lib/trains.js";
   import type { Padding } from "./camera";
   import { stage } from "./camera";
   import { carUnder, fleet } from "./fleet.svelte";

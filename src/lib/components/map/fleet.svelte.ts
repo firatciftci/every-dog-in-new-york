@@ -1,4 +1,4 @@
-import type { Car } from "$lib/trains";
+import type { Car } from "#lib/trains.js";
 
 export const fleet = $state<Array<Car>>([]);
 

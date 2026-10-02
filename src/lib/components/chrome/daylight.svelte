@@ -1,7 +1,7 @@
 <script lang="ts">
   import { MoonIcon, SunIcon } from "@lucide/svelte";
   import { mode, resetMode, setMode, systemPrefersMode } from "mode-watcher";
-  import { cn } from "$lib/utils";
+  import { cn } from "#lib/utils.js";
 
   let {
     horizon = false,

@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { ExpressionSpecification } from "maplibre-gl";
   import { FillLayer, GeoJSON, LineLayer } from "svelte-maplibre";
-  import type { Ink, Slots } from "$lib/map-style";
-  import type { OnHover, ParkCollection } from "$lib/types";
+  import type { Ink, Slots } from "#lib/map-style.js";
+  import type { OnHover, ParkCollection } from "#lib/types.js";
 
   let {
     data,

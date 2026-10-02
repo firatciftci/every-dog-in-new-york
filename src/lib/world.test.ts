@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { Loaded } from "$lib/world";
-import { SUNK_BOROUGH, worldOf } from "$lib/world";
+import type { Loaded } from "#lib/world.js";
+import { SUNK_BOROUGH, worldOf } from "#lib/world.js";
 
 function hood(slug: string, borough: string, lon: number) {
   return {

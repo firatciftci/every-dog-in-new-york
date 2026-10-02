@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { HoodLabels } from "$lib/types";
+  import type { HoodLabels } from "#lib/types.js";
 
   function packOf(labels: HoodLabels) {
     return labels.features.map((f) => f.properties.plate).join(" ");
@@ -10,9 +10,9 @@
   import type { ExpressionSpecification } from "maplibre-gl";
   import { untrack } from "svelte";
   import { GeoJSON, SymbolLayer } from "svelte-maplibre";
-  import type { Ink } from "$lib/map-style";
-  import type { BoroughLabels, ParkLabels } from "$lib/types";
-  import { FONT_BOLD, FONT_REGULAR } from "$lib/map-style";
+  import type { Ink } from "#lib/map-style.js";
+  import type { BoroughLabels, ParkLabels } from "#lib/types.js";
+  import { FONT_BOLD, FONT_REGULAR } from "#lib/map-style.js";
 
   let {
     hoods,

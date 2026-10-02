@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Facet, Ordered } from "$lib/types";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import { liftOffset, liftWeight } from "$lib/rate";
-  import { explorer } from "$lib/state.svelte";
-  import { lighting, swatchFor } from "$lib/swatches.svelte";
-  import { cn, count, lift } from "$lib/utils";
+  import type { Facet, Ordered } from "#lib/types.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import { liftOffset, liftWeight } from "#lib/rate.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { lighting, swatchFor } from "#lib/swatches.svelte.js";
+  import { cn, count, lift } from "#lib/utils.js";
 
   let {
     title,

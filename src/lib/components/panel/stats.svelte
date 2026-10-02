@@ -13,11 +13,15 @@
 </script>
 
 <script lang="ts">
-  import type { NumericField } from "$lib/query";
-  import type { HoodCollection, PaintedProperties, Summary } from "$lib/types";
-  import { rankIn, totals } from "$lib/rate";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count, ordinal } from "$lib/utils";
+  import type { NumericField } from "#lib/query.js";
+  import type {
+    HoodCollection,
+    PaintedProperties,
+    Summary,
+  } from "#lib/types.js";
+  import { rankIn, totals } from "#lib/rate.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count, ordinal } from "#lib/utils.js";
 
   let {
     props,

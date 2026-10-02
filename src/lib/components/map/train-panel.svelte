@@ -1,8 +1,8 @@
 <script lang="ts">
   import { TriangleAlertIcon, XIcon } from "@lucide/svelte";
-  import type { System } from "$lib/rail";
-  import { RAILROAD } from "$lib/rail";
-  import { explorer } from "$lib/state.svelte";
+  import type { System } from "#lib/rail.js";
+  import { RAILROAD } from "#lib/rail.js";
+  import { explorer } from "#lib/state.svelte.js";
   import Bullet from "./bullet.svelte";
   import Goldfinch from "./goldfinch.svelte";
 

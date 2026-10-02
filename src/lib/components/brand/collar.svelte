@@ -10,8 +10,8 @@
 
 <script lang="ts">
   import { watch } from "runed";
-  import Brine from "$lib/components/brand/brine.svelte";
-  import { cn, count } from "$lib/utils";
+  import Brine from "#lib/components/brand/brine.svelte";
+  import { cn, count } from "#lib/utils.js";
 
   let {
     licenses,

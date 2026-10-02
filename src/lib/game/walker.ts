@@ -1,5 +1,5 @@
-import { plateOf } from "$lib/breeds";
-import { count } from "$lib/utils";
+import { plateOf } from "#lib/breeds.js";
+import { count } from "#lib/utils.js";
 import type { Emit } from "./events";
 import type { Cam, Look, Palette } from "./ink";
 import type { OffLeash } from "./off-leash";

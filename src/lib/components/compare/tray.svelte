@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { HoodProperties } from "$lib/types";
-  import { boutOf, MAX_RIVALS, rivalKey, rivalName } from "$lib/compare";
-  import Chip from "$lib/components/chrome/chip.svelte";
-  import { rivalColor } from "$lib/layers";
-  import { explorer } from "$lib/state.svelte";
+  import type { HoodProperties } from "#lib/types.js";
+  import { boutOf, MAX_RIVALS, rivalKey, rivalName } from "#lib/compare.js";
+  import Chip from "#lib/components/chrome/chip.svelte";
+  import { rivalColor } from "#lib/layers.js";
+  import { explorer } from "#lib/state.svelte.js";
 
   let {
     all,

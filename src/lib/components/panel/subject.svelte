@@ -1,15 +1,15 @@
 <script lang="ts">
-  import type { Said } from "$lib/photos";
-  import type { Filter } from "$lib/query";
-  import type { Facet, HoodCollection, Matrix } from "$lib/types";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import ModeLine from "$lib/components/chrome/mode-line.svelte";
-  import Gallery from "$lib/components/panel/gallery.svelte";
-  import { saidOf } from "$lib/photos";
-  import { filterKey, wouldKeep } from "$lib/query";
-  import { explorer } from "$lib/state.svelte";
-  import { FACET_FIELDS } from "$lib/types";
-  import { count } from "$lib/utils";
+  import type { Said } from "#lib/photos.js";
+  import type { Filter } from "#lib/query.js";
+  import type { Facet, HoodCollection, Matrix } from "#lib/types.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import ModeLine from "#lib/components/chrome/mode-line.svelte";
+  import Gallery from "#lib/components/panel/gallery.svelte";
+  import { saidOf } from "#lib/photos.js";
+  import { filterKey, wouldKeep } from "#lib/query.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { FACET_FIELDS } from "#lib/types.js";
+  import { count } from "#lib/utils.js";
 
   let {
     facet,

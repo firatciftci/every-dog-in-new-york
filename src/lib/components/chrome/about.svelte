@@ -1,10 +1,10 @@
 <script lang="ts">
   import { ArrowRightIcon, ArrowUpRightIcon } from "@lucide/svelte";
-  import type { Summary } from "$lib/types";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import Dialog from "$lib/components/chrome/dialog.svelte";
-  import { explorer } from "$lib/state.svelte";
-  import { count } from "$lib/utils";
+  import type { Summary } from "#lib/types.js";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import Dialog from "#lib/components/chrome/dialog.svelte";
+  import { explorer } from "#lib/state.svelte.js";
+  import { count } from "#lib/utils.js";
 
   let { summary }: { summary: Summary } = $props();
 

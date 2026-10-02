@@ -1,8 +1,8 @@
 import { browser } from "$app/env";
-import type { Rival } from "$lib/compare";
-import type { ParkId } from "$lib/game/parks";
-import type { Filter, HitKind } from "$lib/query";
-import type { Query, Shared } from "$lib/share";
+import type { Rival } from "#lib/compare.js";
+import type { ParkId } from "#lib/game/parks.js";
+import type { Filter, HitKind } from "#lib/query.js";
+import type { Query, Shared } from "#lib/share.js";
 import type {
   Detent,
   Facet,
@@ -12,18 +12,18 @@ import type {
   PaintedProperties,
   Pointing,
   View,
-} from "$lib/types";
-import type { Asked } from "$lib/view";
-import { boutOf, MAX_RIVALS, rivalKey } from "$lib/compare";
-import { SWELL } from "$lib/components/map/tide";
+} from "#lib/types.js";
+import type { Asked } from "#lib/view.js";
+import { boutOf, MAX_RIVALS, rivalKey } from "#lib/compare.js";
+import { SWELL } from "#lib/components/map/tide.js";
 import {
   DEFAULT_LAYER,
   dogBreed,
   layerDef,
   layerOfField,
   question,
-} from "$lib/layers";
-import { facetOfField, filterKey } from "$lib/query";
+} from "#lib/layers.js";
+import { facetOfField, filterKey } from "#lib/query.js";
 import {
   readFilters,
   readFocus,
@@ -31,10 +31,10 @@ import {
   readRivals,
   readSelected,
   writeShared,
-} from "$lib/share";
-import { FACET_FIELDS } from "$lib/types";
-import { resolveView } from "$lib/view";
-import { SUNK_BOROUGH } from "$lib/world";
+} from "#lib/share.js";
+import { FACET_FIELDS } from "#lib/types.js";
+import { resolveView } from "#lib/view.js";
+import { SUNK_BOROUGH } from "#lib/world.js";
 
 const INTRO_SEEN = "edny:intro-seen";
 

@@ -1,5 +1,5 @@
-import type { Bounds } from "$lib/components/map/camera";
-import type { SunkShapes } from "$lib/components/map/tide";
+import type { Bounds } from "#lib/components/map/camera.js";
+import type { SunkShapes } from "#lib/components/map/tide.js";
 import type {
   BoroughLabels,
   DogScatter,
@@ -15,8 +15,8 @@ import type {
   SubwayLines,
   SubwayStations,
   Summary,
-} from "$lib/types";
-import { boundsOf, parkLabels, riderPool } from "$lib/data";
+} from "#lib/types.js";
+import { boundsOf, parkLabels, riderPool } from "#lib/data.js";
 
 export const SUNK_BOROUGH = "Staten Island";
 

@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { Painted } from "$lib/layers";
-  import type { Part } from "$lib/sentence";
-  import type { CatKey, LayerId } from "$lib/types";
-  import { ARTICLED } from "$lib/query";
-  import { cityRate } from "$lib/rate";
-  import { chip, figure, place } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { Part } from "#lib/sentence.js";
+  import type { CatKey, LayerId } from "#lib/types.js";
+  import { ARTICLED } from "#lib/query.js";
+  import { cityRate } from "#lib/rate.js";
+  import { chip, figure, place } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { count } from "#lib/utils.js";
   import Sentence from "./sentence.svelte";
 
   let { painted }: { painted: Painted } = $props();

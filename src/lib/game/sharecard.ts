@@ -1,4 +1,4 @@
-import type { MapTheme } from "$lib/map-style";
+import type { MapTheme } from "#lib/map-style.js";
 import { PALETTES, TAU, tinted } from "./ink";
 
 export type Card = {

@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { Painted } from "$lib/layers";
-  import type { Part } from "$lib/sentence";
-  import type { LayerId, Matrix, PaintedProperties } from "$lib/types";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import { failing, filterKey, filterParts } from "$lib/query";
-  import { cityRate, rankIn } from "$lib/rate";
-  import { chip, figure, partsText } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { count, ordinal } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { Part } from "#lib/sentence.js";
+  import type { LayerId, Matrix, PaintedProperties } from "#lib/types.js";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import { failing, filterKey, filterParts } from "#lib/query.js";
+  import { cityRate, rankIn } from "#lib/rate.js";
+  import { chip, figure, partsText } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { count, ordinal } from "#lib/utils.js";
 
   let {
     props,

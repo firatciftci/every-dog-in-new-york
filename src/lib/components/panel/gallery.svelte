@@ -10,14 +10,14 @@
 
 <script lang="ts">
   import { MediaQuery } from "svelte/reactivity";
-  import type { Snapshot } from "$lib/photos";
-  import type { Part } from "$lib/sentence";
-  import { hasPlate, plateUrl } from "$lib/breeds";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import DragScroller from "$lib/components/panel/drag-scroller.svelte";
-  import { photosOf } from "$lib/photos";
-  import { chip } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
+  import type { Snapshot } from "#lib/photos.js";
+  import type { Part } from "#lib/sentence.js";
+  import { hasPlate, plateUrl } from "#lib/breeds.js";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import DragScroller from "#lib/components/panel/drag-scroller.svelte";
+  import { photosOf } from "#lib/photos.js";
+  import { chip } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
 
   let {
     breed,

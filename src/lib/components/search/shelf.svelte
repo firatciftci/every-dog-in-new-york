@@ -4,15 +4,15 @@
   import { expoOut } from "svelte/easing";
   import { MediaQuery } from "svelte/reactivity";
   import { slide } from "svelte/transition";
-  import type { HoodCollection, Matrix } from "$lib/types";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import { matching } from "$lib/query";
-  import { askParts, shelf } from "$lib/saved.svelte";
-  import { scrollEdges } from "$lib/scroll";
-  import { partsText } from "$lib/sentence";
-  import { askQuery, readAsk } from "$lib/share";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import type { HoodCollection, Matrix } from "#lib/types.js";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import { matching } from "#lib/query.js";
+  import { askParts, shelf } from "#lib/saved.svelte.js";
+  import { scrollEdges } from "#lib/scroll.js";
+  import { partsText } from "#lib/sentence.js";
+  import { askQuery, readAsk } from "#lib/share.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let { hoods, matrix }: { hoods: HoodCollection; matrix: Matrix } = $props();
 

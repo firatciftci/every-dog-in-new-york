@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Painted } from "$lib/layers";
-  import { explorer } from "$lib/state.svelte";
-  import { count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { count } from "#lib/utils.js";
 
   let { painted }: { painted: Painted } = $props();
 

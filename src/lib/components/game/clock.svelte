@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { OffLeash } from "$lib/game/off-leash";
+  import type { OffLeash } from "#lib/game/off-leash.js";
 
   let { gameSeconds, clock }: { gameSeconds: number; clock: OffLeash } =
     $props();

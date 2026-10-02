@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { Line } from "$lib/trains";
-import type { Rider } from "$lib/types";
-import { crew, pointAt } from "$lib/trains";
+import type { Line } from "#lib/trains.js";
+import type { Rider } from "#lib/types.js";
+import { crew, pointAt } from "#lib/trains.js";
 
 const line: Line = {
   system: "subway",

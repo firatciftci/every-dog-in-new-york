@@ -1,4 +1,4 @@
-import type { MapTheme } from "$lib/map-style";
+import type { MapTheme } from "#lib/map-style.js";
 
 export type Cam = {
   w: number;

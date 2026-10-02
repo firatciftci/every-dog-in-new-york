@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { HoodProperties } from "$lib/types";
-import { cityRate, rankIn, totals } from "$lib/rate";
+import type { HoodProperties } from "#lib/types.js";
+import { cityRate, rankIn, totals } from "#lib/rate.js";
 
 const HOOD: HoodProperties = {
   slug: "x",

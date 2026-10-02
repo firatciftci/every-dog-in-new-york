@@ -2,9 +2,9 @@
   import type { Map as MapLibreMap } from "maplibre-gl";
   import { MediaQuery } from "svelte/reactivity";
   import { slide } from "svelte/transition";
-  import type { Painted } from "$lib/layers";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
 
   let { map, painted }: { map: MapLibreMap; painted: Painted } = $props();
 

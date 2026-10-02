@@ -1,7 +1,7 @@
 <script lang="ts">
   import { resolve } from "$app/paths";
   import { page } from "$app/state";
-  import Plate from "$lib/components/brand/plate.svelte";
+  import Plate from "#lib/components/brand/plate.svelte";
 
   const lost = $derived(page.status === 404);
 </script>

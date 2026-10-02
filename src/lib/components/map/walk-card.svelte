@@ -6,15 +6,15 @@
   import { ArrowLeftIcon, ArrowRightIcon, PawPrintIcon } from "@lucide/svelte";
   import { cubicOut } from "svelte/easing";
   import { fade, fly } from "svelte/transition";
-  import type { HoodCollection, Matrix, Summary } from "$lib/types";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import WalkHook from "$lib/components/chrome/walk-hook.svelte";
-  import { strange } from "$lib/query";
-  import { weave } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { swatches } from "$lib/swatches.svelte";
-  import { cn } from "$lib/utils";
-  import { buildStops } from "$lib/walk";
+  import type { HoodCollection, Matrix, Summary } from "#lib/types.js";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import WalkHook from "#lib/components/chrome/walk-hook.svelte";
+  import { strange } from "#lib/query.js";
+  import { weave } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { swatches } from "#lib/swatches.svelte.js";
+  import { cn } from "#lib/utils.js";
+  import { buildStops } from "#lib/walk.js";
 
   let {
     hoods,

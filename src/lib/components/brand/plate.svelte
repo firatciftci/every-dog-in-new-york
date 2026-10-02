@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { plateUrl } from "$lib/breeds";
-  import { cn } from "$lib/utils";
+  import { plateUrl } from "#lib/breeds.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     breed,

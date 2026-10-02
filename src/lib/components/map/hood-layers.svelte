@@ -20,14 +20,14 @@
     LineLayer,
   } from "svelte-maplibre";
   import { MediaQuery } from "svelte/reactivity";
-  import type { Ink, Slots } from "$lib/map-style";
+  import type { Ink, Slots } from "#lib/map-style.js";
   import type {
     OnHover,
     PaintedCollection,
     PaintedProperties,
-  } from "$lib/types";
-  import { explorer } from "$lib/state.svelte";
-  import { SUNK_BOROUGH } from "$lib/world";
+  } from "#lib/types.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { SUNK_BOROUGH } from "#lib/world.js";
   import { carUnder } from "./fleet.svelte";
 
   let {

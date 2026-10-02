@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-svelte";
 import { page } from "vitest/browser";
-import { chip, figure, partsText, place } from "$lib/sentence";
+import { chip, figure, partsText, place } from "#lib/sentence.js";
 import Sentence from "./sentence.svelte";
 
 function visibleText(container: HTMLElement) {

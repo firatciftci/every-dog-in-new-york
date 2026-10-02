@@ -1,5 +1,5 @@
-import type { Filter, NumericField } from "$lib/query";
-import type { Part } from "$lib/sentence";
+import type { Filter, NumericField } from "#lib/query.js";
+import type { Part } from "#lib/sentence.js";
 import type {
   Facet,
   HoodCollection,
@@ -7,10 +7,10 @@ import type {
   LayerId,
   Matrix,
   Summary,
-} from "$lib/types";
-import { wouldKeep } from "$lib/query";
-import { chip, dial, figure, place } from "$lib/sentence";
-import { count, lift } from "$lib/utils";
+} from "#lib/types.js";
+import { wouldKeep } from "#lib/query.js";
+import { chip, dial, figure, place } from "#lib/sentence.js";
+import { count, lift } from "#lib/utils.js";
 
 const HOMES = { min: 0.5, max: 7, step: 0.5 };
 const GRIPES = { min: 5, max: 115, step: 5 };

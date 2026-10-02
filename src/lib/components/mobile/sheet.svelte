@@ -2,7 +2,7 @@
   import { ChevronsDownIcon, ChevronUpIcon } from "@lucide/svelte";
   import { cubicOut } from "svelte/easing";
   import { fly, slide } from "svelte/transition";
-  import type { Painted } from "$lib/layers";
+  import type { Painted } from "#lib/layers.js";
   import type {
     Detent,
     HoodCollection,
@@ -12,32 +12,32 @@
     SheetGrip,
     Shelter,
     Summary,
-  } from "$lib/types";
-  import Collar from "$lib/components/brand/collar.svelte";
-  import CityLede from "$lib/components/chrome/city-lede.svelte";
-  import Colophon from "$lib/components/chrome/colophon.svelte";
-  import LegendBody from "$lib/components/chrome/legend-body.svelte";
-  import Tabs from "$lib/components/chrome/tabs.svelte";
-  import ViewPicker from "$lib/components/chrome/view-picker.svelte";
-  import WalkHook from "$lib/components/chrome/walk-hook.svelte";
-  import Bout from "$lib/components/compare/bout.svelte";
-  import Answer from "$lib/components/panel/answer.svelte";
-  import Detail from "$lib/components/panel/detail.svelte";
-  import HoodHead from "$lib/components/panel/hood-head.svelte";
-  import { paneOf } from "$lib/components/panel/pane.svelte";
-  import ShelterLine from "$lib/components/panel/shelter-line.svelte";
-  import Stats from "$lib/components/panel/stats.svelte";
-  import Subject from "$lib/components/panel/subject.svelte";
-  import Turn from "$lib/components/panel/turn.svelte";
-  import Box from "$lib/components/search/box.svelte";
-  import Docket from "$lib/components/search/docket.svelte";
-  import Narrow from "$lib/components/search/narrow.svelte";
-  import Results from "$lib/components/search/results.svelte";
-  import Shelf from "$lib/components/search/shelf.svelte";
-  import Tally from "$lib/components/search/tally.svelte";
-  import { scrollEdges } from "$lib/scroll";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  } from "#lib/types.js";
+  import Collar from "#lib/components/brand/collar.svelte";
+  import CityLede from "#lib/components/chrome/city-lede.svelte";
+  import Colophon from "#lib/components/chrome/colophon.svelte";
+  import LegendBody from "#lib/components/chrome/legend-body.svelte";
+  import Tabs from "#lib/components/chrome/tabs.svelte";
+  import ViewPicker from "#lib/components/chrome/view-picker.svelte";
+  import WalkHook from "#lib/components/chrome/walk-hook.svelte";
+  import Bout from "#lib/components/compare/bout.svelte";
+  import Answer from "#lib/components/panel/answer.svelte";
+  import Detail from "#lib/components/panel/detail.svelte";
+  import HoodHead from "#lib/components/panel/hood-head.svelte";
+  import { paneOf } from "#lib/components/panel/pane.svelte.js";
+  import ShelterLine from "#lib/components/panel/shelter-line.svelte";
+  import Stats from "#lib/components/panel/stats.svelte";
+  import Subject from "#lib/components/panel/subject.svelte";
+  import Turn from "#lib/components/panel/turn.svelte";
+  import Box from "#lib/components/search/box.svelte";
+  import Docket from "#lib/components/search/docket.svelte";
+  import Narrow from "#lib/components/search/narrow.svelte";
+  import Results from "#lib/components/search/results.svelte";
+  import Shelf from "#lib/components/search/shelf.svelte";
+  import Tally from "#lib/components/search/tally.svelte";
+  import { scrollEdges } from "#lib/scroll.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
   import Shell from "./sheet-shell.svelte";
 
   let {

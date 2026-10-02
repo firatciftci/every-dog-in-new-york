@@ -1,6 +1,6 @@
-import type { Facet, HoodProperties, Matrix } from "$lib/types";
-import { metricReader } from "$lib/query";
-import { cityRate, FACET_DENOMINATOR, liftOf, totals } from "$lib/rate";
+import type { Facet, HoodProperties, Matrix } from "#lib/types.js";
+import { metricReader } from "#lib/query.js";
+import { cityRate, FACET_DENOMINATOR, liftOf, totals } from "#lib/rate.js";
 
 export const MAX_RIVALS = 4;
 

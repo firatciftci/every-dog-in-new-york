@@ -1,13 +1,13 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import type { Painted } from "$lib/layers";
-  import type { PaintedProperties } from "$lib/types";
-  import Brine from "$lib/components/brand/brine.svelte";
-  import Kelp from "$lib/components/brand/kelp.svelte";
-  import Plate from "$lib/components/brand/plate.svelte";
-  import { cityRate } from "$lib/rate";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { PaintedProperties } from "#lib/types.js";
+  import Brine from "#lib/components/brand/brine.svelte";
+  import Kelp from "#lib/components/brand/kelp.svelte";
+  import Plate from "#lib/components/brand/plate.svelte";
+  import { cityRate } from "#lib/rate.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     props,

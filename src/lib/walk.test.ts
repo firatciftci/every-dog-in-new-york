@@ -5,10 +5,10 @@ import type {
   HoodProperties,
   Matrix,
   Summary,
-} from "$lib/types";
-import type { Doors } from "$lib/walk";
-import { partsText, weave } from "$lib/sentence";
-import { buildStops } from "$lib/walk";
+} from "#lib/types.js";
+import type { Doors } from "#lib/walk.js";
+import { partsText, weave } from "#lib/sentence.js";
+import { buildStops } from "#lib/walk.js";
 
 const read = <T>(path: string) => JSON.parse(readFileSync(path, "utf8")) as T;
 

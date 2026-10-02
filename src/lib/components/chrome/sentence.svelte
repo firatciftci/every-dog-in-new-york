@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { Part } from "$lib/sentence";
-  import { isGlued } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { cn } from "$lib/utils";
+  import type { Part } from "#lib/sentence.js";
+  import { isGlued } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
   import Chip from "./chip.svelte";
   import Dial from "./dial.svelte";
 

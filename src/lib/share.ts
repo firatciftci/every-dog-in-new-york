@@ -1,10 +1,10 @@
 import type { ReturnUseSearchParams } from "runed/kit";
 import { createSearchParamsSchema } from "runed/kit";
-import type { Rival } from "$lib/compare";
-import type { Filter, Metric, NumericField } from "$lib/query";
-import type { CategoryField, Facet, Focus, LayerId } from "$lib/types";
-import { DEFAULT_LAYER, isLayerId } from "$lib/layers";
-import { CATEGORY_FIELDS, FIELDS } from "$lib/query";
+import type { Rival } from "#lib/compare.js";
+import type { Filter, Metric, NumericField } from "#lib/query.js";
+import type { CategoryField, Facet, Focus, LayerId } from "#lib/types.js";
+import { DEFAULT_LAYER, isLayerId } from "#lib/layers.js";
+import { CATEGORY_FIELDS, FIELDS } from "#lib/query.js";
 
 const FACET_CODE = { breeds: "b", names: "n" } as const;
 const FACET_OF: Record<string, Facet> = { b: "breeds", n: "names" };

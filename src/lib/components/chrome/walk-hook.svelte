@@ -1,8 +1,8 @@
 <script lang="ts">
   import { ArrowRightIcon } from "@lucide/svelte";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import { weave } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import { weave } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
 
   const hook = weave(
     `Your neighborhood does not agree with the rest of New York about dogs, and neither does the next one. Look up your dog’s name or breed.`,

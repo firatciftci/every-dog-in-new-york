@@ -11,20 +11,7 @@ export default defineConfig({
     sveltekit({
       preprocess: [vitePreprocess()],
       adapter: adapter({ fallback: "404.html" }),
-      vitePlugin: { inspector: { toggleKeyCombo: "control-o" } },
-      experimental: { explicitEnvironmentVariables: true },
-      typescript: {
-        config: (config) => {
-          (config.include as Array<string>).push(
-            "../eslint.config.js",
-            "../knip.config.ts",
-          );
-          Object.assign(config.compilerOptions, {
-            noImplicitOverride: true,
-            noUncheckedIndexedAccess: true,
-          });
-        },
-      },
+      inspector: { toggleKeyCombo: "control-o" },
     }),
     {
       /**

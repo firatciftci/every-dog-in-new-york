@@ -1,9 +1,9 @@
 <script lang="ts">
   import { XIcon } from "@lucide/svelte";
-  import type { Painted } from "$lib/layers";
-  import type { PaintedProperties } from "$lib/types";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { PaintedProperties } from "#lib/types.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
 
   let { painted, selected }: { painted: Painted; selected: PaintedProperties } =
     $props();

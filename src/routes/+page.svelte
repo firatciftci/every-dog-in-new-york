@@ -1,6 +1,6 @@
 <script lang="ts" module>
-  import type { Padding } from "$lib/components/map/camera";
-  import type { HoodDetail } from "$lib/types";
+  import type { Padding } from "#lib/components/map/camera.js";
+  import type { HoodDetail } from "#lib/types.js";
 
   const NONE = { common: [], distinct: [] };
   const EMPTY: HoodDetail = { names: NONE, breeds: NONE, zips: [] };
@@ -31,29 +31,29 @@
   import { useSearchParams } from "runed/kit";
   import { untrack } from "svelte";
   import { MediaQuery } from "svelte/reactivity";
-  import type { BaseStyle, MapTheme } from "$lib/map-style";
-  import About from "$lib/components/chrome/about.svelte";
-  import Desktop from "$lib/components/chrome/desktop.svelte";
-  import Help from "$lib/components/chrome/help.svelte";
-  import Intro from "$lib/components/chrome/intro.svelte";
-  import Loader from "$lib/components/chrome/loader.svelte";
-  import Maker from "$lib/components/chrome/maker.svelte";
-  import Meta from "$lib/components/chrome/meta.svelte";
-  import ModePill from "$lib/components/chrome/mode-pill.svelte";
-  import Arena from "$lib/components/game/arena.svelte";
-  import Map from "$lib/components/map/index.svelte";
-  import ShelterCard from "$lib/components/map/shelter-card.svelte";
-  import WalkCard from "$lib/components/map/walk-card.svelte";
-  import Sheet from "$lib/components/mobile/sheet.svelte";
-  import Lightbox from "$lib/components/panel/lightbox.svelte";
-  import { hoodLabels } from "$lib/data";
-  import { cut, facetSwatches } from "$lib/layers";
-  import { loadBaseStyle } from "$lib/map-style";
-  import { QUERY } from "$lib/share";
-  import { explorer } from "$lib/state.svelte";
-  import { setSwatches } from "$lib/swatches.svelte";
-  import { count } from "$lib/utils";
-  import { worldOf } from "$lib/world";
+  import type { BaseStyle, MapTheme } from "#lib/map-style.js";
+  import About from "#lib/components/chrome/about.svelte";
+  import Desktop from "#lib/components/chrome/desktop.svelte";
+  import Help from "#lib/components/chrome/help.svelte";
+  import Intro from "#lib/components/chrome/intro.svelte";
+  import Loader from "#lib/components/chrome/loader.svelte";
+  import Maker from "#lib/components/chrome/maker.svelte";
+  import Meta from "#lib/components/chrome/meta.svelte";
+  import ModePill from "#lib/components/chrome/mode-pill.svelte";
+  import Arena from "#lib/components/game/arena.svelte";
+  import Map from "#lib/components/map/index.svelte";
+  import ShelterCard from "#lib/components/map/shelter-card.svelte";
+  import WalkCard from "#lib/components/map/walk-card.svelte";
+  import Sheet from "#lib/components/mobile/sheet.svelte";
+  import Lightbox from "#lib/components/panel/lightbox.svelte";
+  import { hoodLabels } from "#lib/data.js";
+  import { cut, facetSwatches } from "#lib/layers.js";
+  import { loadBaseStyle } from "#lib/map-style.js";
+  import { QUERY } from "#lib/share.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { setSwatches } from "#lib/swatches.svelte.js";
+  import { count } from "#lib/utils.js";
+  import { worldOf } from "#lib/world.js";
   import type { PageProps } from "./$types";
 
   let { data }: PageProps = $props();
@@ -92,12 +92,12 @@
       return;
     }
 
-    const url = new URL(page.url);
+    const url = new URL(page.url.href);
     url.searchParams.delete("play");
     // Same page, minus one param: there is no route to resolve, and history.replaceState fights the router.
     // replaceState() would throw here: the router is not started until the enter callbacks return.
-    // eslint-disable-next-line svelte/no-navigation-without-resolve
-    void goto(url, { replaceState: true, keepFocus: true, noScroll: true });
+
+    void goto(url, { replace: true, reset: false });
   });
 
   const painted = $derived(

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Facet } from "$lib/types";
-  import { lighting, swatchFor } from "$lib/swatches.svelte";
-  import { cn } from "$lib/utils";
+  import type { Facet } from "#lib/types.js";
+  import { lighting, swatchFor } from "#lib/swatches.svelte.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     facet,

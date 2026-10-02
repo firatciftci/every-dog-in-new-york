@@ -6,8 +6,8 @@ import type {
   Point,
   Polygon,
 } from "geojson";
-import type { Rival } from "$lib/compare";
-import type { System } from "$lib/rail";
+import type { Rival } from "#lib/compare.js";
+import type { System } from "#lib/rail.js";
 
 export type HoodProperties = {
   slug: string;

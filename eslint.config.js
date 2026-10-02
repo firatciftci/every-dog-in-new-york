@@ -114,7 +114,7 @@ export default antfu({
         "error",
         {
           tsconfig: { rootDir: import.meta.dirname, filename: "tsconfig.json" },
-          internalPattern: [String.raw`^\$lib/.+`],
+          internalPattern: ["^#lib(/.+)?$"],
           newlinesBetween: 0,
           order: "asc",
           type: "natural",

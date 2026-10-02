@@ -41,8 +41,8 @@
   import { XIcon } from "@lucide/svelte";
   import { MediaQuery } from "svelte/reactivity";
   import { fade, fly } from "svelte/transition";
-  import { scrollEdges } from "$lib/scroll";
-  import { cn } from "$lib/utils";
+  import { scrollEdges } from "#lib/scroll.js";
+  import { cn } from "#lib/utils.js";
 
   let {
     label,

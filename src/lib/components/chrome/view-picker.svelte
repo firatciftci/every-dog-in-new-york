@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { Facet, LayerId } from "$lib/types";
+  import type { Facet, LayerId } from "#lib/types.js";
 
   const GROUPS = [
     {
@@ -37,10 +37,10 @@
 </script>
 
 <script lang="ts">
-  import { layerDef, layerOfField } from "$lib/layers";
-  import { explorer } from "$lib/state.svelte";
-  import { FACET_FIELDS } from "$lib/types";
-  import { cn } from "$lib/utils";
+  import { layerDef, layerOfField } from "#lib/layers.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { FACET_FIELDS } from "#lib/types.js";
+  import { cn } from "#lib/utils.js";
   import ModeLine from "./mode-line.svelte";
 
   const asked = $derived(

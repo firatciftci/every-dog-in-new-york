@@ -1,10 +1,10 @@
 <script lang="ts">
   import { CrosshairIcon } from "@lucide/svelte";
-  import type { Painted } from "$lib/layers";
-  import type { LayerId, PaintedProperties } from "$lib/types";
-  import Brine from "$lib/components/brand/brine.svelte";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { LayerId, PaintedProperties } from "#lib/types.js";
+  import Brine from "#lib/components/brand/brine.svelte";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
 
   let { painted, limit = 6 }: { painted: Painted; limit?: number } = $props();
 

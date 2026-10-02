@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Shelter } from "$lib/types";
-  import { DOORWAY, KENNEL } from "$lib/kennel";
-  import { explorer } from "$lib/state.svelte";
+  import type { Shelter } from "#lib/types.js";
+  import { DOORWAY, KENNEL } from "#lib/kennel.js";
+  import { explorer } from "#lib/state.svelte.js";
 
   let { here }: { here: Array<Shelter> } = $props();
 </script>

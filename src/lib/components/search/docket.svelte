@@ -6,16 +6,16 @@
   import { expoOut } from "svelte/easing";
   import { MediaQuery } from "svelte/reactivity";
   import { slide } from "svelte/transition";
-  import type { Painted } from "$lib/layers";
-  import type { Focus } from "$lib/types";
-  import Chip from "$lib/components/chrome/chip.svelte";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import Tray from "$lib/components/compare/tray.svelte";
-  import { layerDef } from "$lib/layers";
-  import { filterKey, filterParts } from "$lib/query";
-  import { partsText } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { cn, count } from "$lib/utils";
+  import type { Painted } from "#lib/layers.js";
+  import type { Focus } from "#lib/types.js";
+  import Chip from "#lib/components/chrome/chip.svelte";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import Tray from "#lib/components/compare/tray.svelte";
+  import { layerDef } from "#lib/layers.js";
+  import { filterKey, filterParts } from "#lib/query.js";
+  import { partsText } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { cn, count } from "#lib/utils.js";
   import Tally from "./tally.svelte";
 
   let { painted, tally = true }: { painted: Painted; tally?: boolean } =

@@ -6,17 +6,17 @@
     LineLayer,
     SymbolLayer,
   } from "svelte-maplibre";
-  import type { Ink, Slots } from "$lib/map-style";
+  import type { Ink, Slots } from "#lib/map-style.js";
   import type {
     DogScatter,
     RailLines,
     RailStations,
     SubwayLines,
     SubwayStations,
-  } from "$lib/types";
-  import { FONT_REGULAR } from "$lib/map-style";
-  import { railOffset, railPaint } from "$lib/rail";
-  import { routePaint } from "$lib/subway";
+  } from "#lib/types.js";
+  import { FONT_REGULAR } from "#lib/map-style.js";
+  import { railOffset, railPaint } from "#lib/rail.js";
+  import { routePaint } from "#lib/subway.js";
 
   let {
     lines,

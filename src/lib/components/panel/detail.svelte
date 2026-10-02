@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { Part } from "$lib/sentence";
-  import type { HoodDetail, Matrix, PaintedProperties } from "$lib/types";
-  import Sentence from "$lib/components/chrome/sentence.svelte";
-  import Gallery from "$lib/components/panel/gallery.svelte";
-  import { chip } from "$lib/sentence";
-  import { explorer } from "$lib/state.svelte";
-  import { FACET_FIELDS, FACETS } from "$lib/types";
-  import { count, lift } from "$lib/utils";
+  import type { Part } from "#lib/sentence.js";
+  import type { HoodDetail, Matrix, PaintedProperties } from "#lib/types.js";
+  import Sentence from "#lib/components/chrome/sentence.svelte";
+  import Gallery from "#lib/components/panel/gallery.svelte";
+  import { chip } from "#lib/sentence.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { FACET_FIELDS, FACETS } from "#lib/types.js";
+  import { count, lift } from "#lib/utils.js";
   import FacetList from "./facet-list.svelte";
 
   let {

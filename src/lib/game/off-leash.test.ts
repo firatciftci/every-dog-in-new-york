@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { offLeash } from "$lib/game/off-leash";
-import { PARKS } from "$lib/game/parks";
+import { offLeash } from "#lib/game/off-leash.js";
+import { PARKS } from "#lib/game/parks.js";
 
 const parks = Object.values(PARKS);
 

@@ -1,4 +1,4 @@
-import type { Facet, Pointing } from "$lib/types";
+import type { Facet, Pointing } from "#lib/types.js";
 
 export type Part =
   | string

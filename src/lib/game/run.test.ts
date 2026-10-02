@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import type { GameEvent } from "$lib/game/events";
-import { DashGame } from "$lib/game/dash";
-import { offLeash } from "$lib/game/off-leash";
-import { PARKS } from "$lib/game/parks";
-import { WalkerGame } from "$lib/game/walker";
+import type { GameEvent } from "#lib/game/events.js";
+import { DashGame } from "#lib/game/dash.js";
+import { offLeash } from "#lib/game/off-leash.js";
+import { PARKS } from "#lib/game/parks.js";
+import { WalkerGame } from "#lib/game/walker.js";
 
 function record() {
   const log: Array<GameEvent> = [];

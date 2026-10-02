@@ -1,4 +1,4 @@
-import type { Emit } from "$lib/game/events";
+import type { Emit } from "#lib/game/events.js";
 
 export type Gauges = {
   pack: number;

@@ -6,13 +6,13 @@
   import { on } from "svelte/events";
   import { MediaQuery } from "svelte/reactivity";
   import { fade } from "svelte/transition";
-  import type { ParkId } from "$lib/game/parks";
-  import type { ParkCollection } from "$lib/types";
-  import { kennel } from "$lib/game/kennel.svelte";
-  import { offLeash } from "$lib/game/off-leash";
-  import { parkOf, PARKS, rankOf } from "$lib/game/parks";
-  import { explorer } from "$lib/state.svelte";
-  import { count } from "$lib/utils";
+  import type { ParkId } from "#lib/game/parks.js";
+  import type { ParkCollection } from "#lib/types.js";
+  import { kennel } from "#lib/game/kennel.svelte.js";
+  import { offLeash } from "#lib/game/off-leash.js";
+  import { parkOf, PARKS, rankOf } from "#lib/game/parks.js";
+  import { explorer } from "#lib/state.svelte.js";
+  import { count } from "#lib/utils.js";
   import type { Padding } from "./camera";
   import { stage } from "./camera";
 

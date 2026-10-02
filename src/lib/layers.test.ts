@@ -1,8 +1,13 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import type { Filter } from "$lib/query";
-import type { HoodCollection, HoodProperties, Matrix, View } from "$lib/types";
-import { cut, layerDef } from "$lib/layers";
+import type { Filter } from "#lib/query.js";
+import type {
+  HoodCollection,
+  HoodProperties,
+  Matrix,
+  View,
+} from "#lib/types.js";
+import { cut, layerDef } from "#lib/layers.js";
 
 const topo = JSON.parse(
   readFileSync("static/data/neighborhoods.topo.json", "utf8"),
