@@ -96,7 +96,6 @@
     url.searchParams.delete("play");
     // Same page, minus one param: there is no route to resolve, and history.replaceState fights the router.
     // replaceState() would throw here: the router is not started until the enter callbacks return.
-
     void goto(url, { replace: true, reset: false });
   });
 
