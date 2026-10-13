@@ -141,7 +141,7 @@
       id="{id}-list"
       role="listbox"
       aria-label={label}
-      class="mt-1 grid gap-px rounded-[5px] bg-background/80 p-1 ring-1 ring-foreground/12"
+      class="mt-1 grid grid-cols-1 gap-px rounded-[5px] bg-background/80 p-1 ring-1 ring-foreground/12"
     >
       {#each hits as hit, i (hit.key)}
         <li
