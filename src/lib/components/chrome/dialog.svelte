@@ -79,8 +79,13 @@
     const target = field.closest<HTMLElement>("[data-reveal]") ?? field;
     const box = scroller.getBoundingClientRect();
     const span = target.getBoundingClientRect();
+    const pinned = scroller.querySelector("[data-pinned]");
+    const floor = Math.min(
+      box.bottom - 40,
+      (pinned?.getBoundingClientRect().top ?? Infinity) - 8,
+    );
     const above = span.top - box.top - 24;
-    const below = span.bottom - box.bottom + 40;
+    const below = span.bottom - floor;
     const shift = below > 0 ? Math.min(below, above) : Math.min(above, 0);
     if (shift !== 0) {
       scroller.scrollBy({
@@ -113,6 +118,10 @@
       node.style.top = `${port.offsetTop}px`;
       node.style.height = `${port.height}px`;
       node.style.setProperty("--room", `${port.height}px`);
+      node.toggleAttribute(
+        "data-keyboard",
+        document.documentElement.clientHeight - port.height * port.scale > 120,
+      );
       revealSoon();
     };
 

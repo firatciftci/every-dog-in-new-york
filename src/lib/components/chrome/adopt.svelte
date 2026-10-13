@@ -74,6 +74,15 @@
   const shown = $derived(trimmed.length > 0 ? trimmed : "Your dog");
   const hood = $derived(places.find((p) => p.key === slug) ?? null);
   const ready = $derived(trimmed.length > 0 && breed != null && slug != null);
+  const missing = $derived(
+    new Intl.ListFormat("en-US").format(
+      [
+        trimmed.length === 0 ? "a name" : null,
+        breed == null ? "a breed" : null,
+        slug == null ? "a neighborhood" : null,
+      ].filter((part) => part != null),
+    ),
+  );
 
   const namesake = $derived.by(() => {
     if (city == null || trimmed.length < 2) {
@@ -466,12 +475,23 @@
       </fieldset>
     </div>
 
+    <p class="mt-6 text-[0.71875rem] leading-snug text-muted-foreground">
+      Your dog stays in this browser. Nothing is sent anywhere, and the city’s
+      counts do not change.
+    </p>
+
     <div
-      class="mt-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-2"
+      data-pinned
+      class="sticky bottom-0 z-10 -mx-6 mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-6 pt-7 pb-6 in-data-keyboard:static @max-xs:-mx-4 @max-xs:px-4"
     >
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 -z-10 paper mask-t-from-56%"
+      ></span>
       <button
         type="submit"
         disabled={!ready}
+        aria-describedby={ready ? undefined : "pet-missing"}
         class="cursor-pointer rounded-[10px] px-4 pt-2.5 pb-2 slab text-[0.875rem] brass transition-[translate,filter] duration-200 stamped hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-100 disabled:grayscale-[0.7]"
       >
         {was == null
@@ -510,12 +530,14 @@
             }}>Take {was.name} off the map</button
           >
         {/if}
+      {:else if !ready}
+        <p
+          id="pet-missing"
+          class="min-w-40 flex-1 text-[0.71875rem] leading-snug text-muted-foreground"
+        >
+          Add {missing}.
+        </p>
       {/if}
     </div>
-
-    <p class="mt-4 text-[0.71875rem] leading-snug text-muted-foreground">
-      Your dog stays in this browser. Nothing is sent anywhere, and the city’s
-      counts do not change.
-    </p>
   </form>
 </Dialog>

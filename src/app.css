@@ -193,7 +193,8 @@
     @apply mask-t-from-[calc(100%-var(--scroll-fade,4rem))];
   }
 
-  &:has(> [data-fade-end="true"]):not(:has([data-pinned])) {
+  &:has(> [data-fade-end="true"]):not(:has([data-pinned])),
+  [data-keyboard] &:has(> [data-fade-end="true"]) {
     @apply mask-b-from-[calc(100%-var(--scroll-fade,4rem))];
   }
 }
