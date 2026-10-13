@@ -773,6 +773,136 @@
   }
 }
 
+/* Another reader's ball: lobbed in from the upper right, two bounces, and a roll to a stop. */
+@keyframes toss {
+  0% {
+    transform: translate(38px, -52px) rotate(0deg);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.9, 0.6);
+  }
+  8% {
+    opacity: 1;
+  }
+  40% {
+    transform: translate(8px, 0) rotate(190deg);
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
+  }
+  56% {
+    transform: translate(1px, -13px) rotate(250deg);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.5);
+  }
+  70% {
+    transform: translate(-5px, 0) rotate(300deg);
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
+  }
+  79% {
+    transform: translate(-8px, -4px) rotate(325deg);
+  }
+  88% {
+    transform: translate(-11px, 0) rotate(345deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-14px, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes woof {
+  0% {
+    transform: scale(0.3) rotate(-14deg);
+    opacity: 0;
+  }
+  22% {
+    transform: scale(1.14) rotate(5deg);
+    opacity: 1;
+  }
+  36% {
+    transform: scale(0.95) rotate(-3deg);
+  }
+  50%,
+  82% {
+    transform: scale(1) rotate(-4deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(-6px) rotate(-4deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sniff {
+  0% {
+    transform: translateY(4px) scale(0.5);
+    opacity: 0;
+  }
+  30%,
+  70% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-3px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes snuffle {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-1.5px, -1px) rotate(-12deg);
+  }
+  40% {
+    transform: translate(1px, -2px) rotate(8deg);
+  }
+  60% {
+    transform: translate(-1px, -1px) rotate(-6deg);
+  }
+  80% {
+    transform: translate(1px, 0) rotate(4deg);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1) rotate(360deg);
+  }
+  12% {
+    transform: translateY(0) scale(1.15, 0.85);
+  }
+  45% {
+    transform: translateY(-7px) scale(0.95, 1.05) rotate(120deg);
+  }
+  78% {
+    transform: translateY(0) scale(1.1, 0.9) rotate(200deg);
+  }
+  90% {
+    transform: translateY(-1.5px) scale(1, 1) rotate(220deg);
+  }
+}
+
+@keyframes yap {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.25) rotate(-10deg);
+  }
+  50% {
+    transform: scale(0.95) rotate(6deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+}
+
 /* Into the ring: a drop, a dunk under the waterline, and a bob back up. */
 @keyframes plop {
   0% {

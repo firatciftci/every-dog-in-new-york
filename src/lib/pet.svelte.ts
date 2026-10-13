@@ -32,7 +32,7 @@ export function newId() {
   return `dog-${Date.now().toString(36)}${Math.floor(Math.random() * 1296).toString(36)}`;
 }
 
-export function collarOf(key: Collar) {
+export function collarOf(key: string) {
   return COLLARS.find((c) => c.key === key)?.color ?? COLLARS[0].color;
 }
 

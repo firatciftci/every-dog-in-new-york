@@ -7,6 +7,7 @@
   import Kelp from "#lib/components/brand/kelp.svelte";
   import Plate from "#lib/components/brand/plate.svelte";
   import City from "#lib/components/story/city.svelte";
+  import { crowd } from "#lib/crowd.svelte.js";
   import { PARKS } from "#lib/game/parks.js";
   import { collarOf, everyone, MIXED, nameKey, pet } from "#lib/pet.svelte.js";
   import { explorer } from "#lib/state.svelte.js";
@@ -564,7 +565,26 @@
   </div>
 
   <p class="mt-4 text-[0.71875rem] leading-snug text-muted-foreground">
-    {dog.name} lives only in this browser and is not counted in any figure on the
+    {dog.name} is saved only in this browser and is not counted in any figure on the
     map.
+    {#if crowd.hidden}
+      Other readers cannot see your dogs.
+    {:else}
+      While the map is open, other readers see {dog.name} as a small dot in {den.hood}
+      and on any train {dog.name} rides.
+      {#if city != null && city.names[key] == null}
+        They see the breed but not the name, because fewer than two licensed
+        dogs are named {dog.name}.
+      {/if}
+    {/if}
+    <button
+      type="button"
+      class="cursor-pointer text-primary underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:decoration-primary"
+      onclick={() => {
+        crowd.hidden = !crowd.hidden;
+      }}
+    >
+      {crowd.hidden ? "Show them again" : "Hide your dogs from other readers"}
+    </button>
   </p>
 </section>

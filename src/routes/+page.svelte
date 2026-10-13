@@ -24,6 +24,7 @@
   import { useSearchParams } from "runed/kit";
   import { untrack } from "svelte";
   import type { BaseStyle, MapTheme } from "#lib/map-style.js";
+  import { aBreed } from "#lib/breeds.js";
   import About from "#lib/components/chrome/about.svelte";
   import Adopt from "#lib/components/chrome/adopt.svelte";
   import Desktop from "#lib/components/chrome/desktop.svelte";
@@ -40,6 +41,7 @@
   import Sheet from "#lib/components/mobile/sheet.svelte";
   import Lightbox from "#lib/components/panel/lightbox.svelte";
   import Reader from "#lib/components/story/reader.svelte";
+  import { crowd } from "#lib/crowd.svelte.js";
   import { hoodLabels } from "#lib/data.js";
   import { cut, facetSwatches } from "#lib/layers.js";
   import { loadBaseStyle } from "#lib/map-style.js";
@@ -145,6 +147,38 @@
 
   const den = $derived(dens.find((d) => d.dog.id === pet.dog?.id) ?? null);
 
+  // Another reader said hello to one of this reader's dogs, in one sentence for the medallion and the status line.
+  const pinged = $derived.by(() => {
+    const heard = crowd.pinged;
+    const to = heard == null ? undefined : pet.dogs[heard.dog];
+    if (heard == null || to == null) {
+      return null;
+    }
+
+    const { from } = heard;
+    const home =
+      from == null
+        ? undefined
+        : data.hoods.features.find((f) => f.properties.slug === from.slug)
+            ?.properties.name;
+    const kind = from == null ? "" : `${aBreed(from.breed)} from ${home}`;
+    let who = "Another reader";
+    if (from != null && home != null) {
+      who =
+        from.name == null
+          ? `${kind.slice(0, 1).toUpperCase()}${kind.slice(1)}`
+          : `${from.name}, ${kind},`;
+    }
+
+    const did = {
+      sniff: `came over to sniff ${to.name}`,
+      ball: `tossed ${to.name} a ball`,
+      bark: `barked hello at ${to.name}`,
+    }[heard.kind];
+
+    return { id: to.id, n: heard.n, kind: heard.kind, text: `${who} ${did}.` };
+  });
+
   const painted = $derived(
     cut(world.hoods, data.matrix, explorer.view, explorer.filters, theme),
   );
@@ -185,6 +219,9 @@
       parts.push("Staten Island is under water.");
     }
     parts.push(`Colored by ${explorer.viewLabel}.`);
+    if (pinged != null) {
+      parts.push(pinged.text);
+    }
 
     return parts.join(" ");
   });
@@ -253,6 +290,7 @@
       pointer={wide}
       {dens}
       {den}
+      {pinged}
       onready={() => {
         mapReady = true;
       }}

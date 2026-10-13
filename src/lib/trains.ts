@@ -603,6 +603,17 @@ export type Car = {
    */
   followed: boolean;
   alighted: boolean;
+  /**
+   * Another reader's dog: placed from their last departure, never stepped or swapped here.
+   */
+  peer: {
+    id: string;
+    collar: string;
+    at: number;
+    next: number;
+    speed: number;
+    stamp: number;
+  } | null;
 
   dog: string;
   breed: string;
@@ -753,6 +764,7 @@ export function crew(riders: ReadonlyArray<Rider>) {
         mine: own != null,
         followed: false,
         alighted: false,
+        peer: null,
         dog: "",
         breed: "",
         plate: "terrier",

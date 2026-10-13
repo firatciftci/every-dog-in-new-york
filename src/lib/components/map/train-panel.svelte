@@ -29,6 +29,7 @@
     below,
     nub,
     mine = false,
+    peer = false,
     onadopt,
     onclose,
   }: {
@@ -53,6 +54,7 @@
     below: boolean;
     nub: number;
     mine?: boolean;
+    peer?: boolean;
     onadopt: () => void;
     onclose: () => void;
   } = $props();
@@ -101,22 +103,24 @@
       class="h-11.5 w-auto shrink-0 object-contain dark:plate-cut"
     />
     <div class="min-w-0 flex-1 pb-0.5">
-      {#if mine}
+      {#if mine || peer}
         <span
           class="block slab text-[0.625rem] tracking-[0.13em] text-signet uppercase"
-          >Your dog</span
+          >{mine ? "Your dog" : "Another reader’s dog"}</span
         >
       {/if}
-      <button
-        type="button"
-        onclick={leave(() =>
-          mine ? explorer.showPet() : explorer.setFocus("names", dog),
-        )}
-        aria-label={mine ? `Open ${dog}’s card` : `Every dog named ${dog}`}
-        class="block max-w-full cursor-pointer truncate slab text-[1.0625rem] leading-tight underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:decoration-primary"
-      >
-        {dog}
-      </button>
+      {#if !peer || dog !== breed}
+        <button
+          type="button"
+          onclick={leave(() =>
+            mine ? explorer.showPet() : explorer.setFocus("names", dog),
+          )}
+          aria-label={mine ? `Open ${dog}’s card` : `Every dog named ${dog}`}
+          class="block max-w-full cursor-pointer truncate slab text-[1.0625rem] leading-tight underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:decoration-primary"
+        >
+          {dog}
+        </button>
+      {/if}
       {#if breed === MIXED}
         <span
           class="block max-w-full truncate py-0.5 text-[0.71875rem] leading-snug text-muted-foreground"
@@ -204,7 +208,7 @@
       <span class="min-w-0 flex-1">
         <span
           class="block text-[0.625rem] tracking-wide text-muted-foreground uppercase"
-          >{mine ? "Riding to" : "Getting off"}</span
+          >{mine || peer ? "Riding to" : "Getting off"}</span
         >
         <span class="block leading-snug font-medium">{getOff}</span>
         <span class="block text-[0.6875rem] leading-snug text-muted-foreground">
@@ -247,7 +251,7 @@
     </div>
   {/if}
 
-  {#if !mine}
+  {#if !mine && !peer}
     <div
       class="mt-2.5 flex items-center justify-between gap-2 border-t rule pt-2"
     >

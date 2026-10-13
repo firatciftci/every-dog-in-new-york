@@ -36,6 +36,7 @@ export default defineConfig({
       },
     },
   ],
+  server: { proxy: { "/live": { target: "ws://localhost:8787", ws: true } } },
   test: {
     expect: { requireAssertions: true },
     projects: [

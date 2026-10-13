@@ -246,8 +246,14 @@
     <p class="mt-2">
       You can add your own dogs, too. Each one stands in its neighborhood, with
       a card that compares its name, breed, and birth year with the city’s, and
-      it can ride a line you choose. Your dogs stay in your browser and count in
-      no figure on the map.
+      it can ride a line you choose. Your dogs are saved in your browser and do
+      not count in any of the figures displayed on the map.
+    </p>
+    <p class="mt-2">
+      While you have the map open, other readers see your dogs as small dots in
+      their neighborhoods, and on any train they ride. Nothing is stored, and
+      the dots go when you close the page. You can also hide them with a link on
+      each dog’s card.
     </p>
     <p class="mt-2">
       The nine shelters are the ones you can walk into. I took each address and

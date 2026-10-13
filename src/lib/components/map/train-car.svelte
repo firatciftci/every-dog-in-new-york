@@ -27,6 +27,7 @@
     open,
     grazed,
     mine = false,
+    peer = null,
   }: {
     system: System;
     route: string;
@@ -44,12 +45,15 @@
     open: boolean;
     grazed: boolean;
     mine?: boolean;
+    peer?: string | null;
   } = $props();
 
   const own = $derived(
     mine ? pet.dogs.find((d) => d.id === explorer.ride?.id) : undefined,
   );
-  const collar = $derived(own == null ? null : collarOf(own.collar));
+  const collar = $derived(
+    own != null ? collarOf(own.collar) : peer == null ? null : collarOf(peer),
+  );
 
   const short = $derived(signName(boarded));
 
@@ -131,11 +135,11 @@
       shell,
       { "bg-[#cfcdc6]": system === "njt", "bg-[#d9d7cf]": system !== "njt" },
       {
-        "shadow-[0_2px_6px_rgb(0_0_0/0.4)]": !grazed && !open && collar == null,
+        "shadow-[0_2px_6px_rgb(0_0_0/0.4)]": !grazed && !open && own == null,
         "shadow-[0_0_0_2px_var(--color-primary),0_3px_10px_rgb(0_0_0/0.45)]":
-          (grazed || open) && collar == null,
+          (grazed || open) && own == null,
         "shadow-[0_0_0_2.5px_var(--ring),0_0_14px_2px_var(--ring),0_3px_10px_rgb(0_0_0/0.45)]":
-          collar != null,
+          own != null,
       },
     )}
     style:--ring={collar}
@@ -246,7 +250,9 @@
         class="truncate px-1.5 py-0.5 font-sans text-[9px] leading-[1.4] text-white [text-shadow:0_1px_0_rgb(0_0_0/0.25)]"
       >
         <span class="font-bold">{dog}</span>
-        <span class="opacity-85">· your dog, on at {short}</span>
+        <span class="opacity-85"
+          >· {own == null ? "a reader’s dog" : "your dog"}, on at {short}</span
+        >
       </p>
     </div>
   {:else}

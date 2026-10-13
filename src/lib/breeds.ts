@@ -1,3 +1,5 @@
+import { MIXED } from "#lib/pet.svelte.js";
+
 export const MIXES = /\b(?:mix|mixed|mutt)\b/gi;
 
 const PLATES: Record<string, string> = {
@@ -343,4 +345,15 @@ export function hasPlate(breed: string): boolean {
 
 export function plateUrl(breed: string): string {
   return `/breeds/${plateOf(breed)}.webp`;
+}
+
+/**
+ * "a Beagle", "an Akita", or "a mixed breed", for a sentence about one dog.
+ */
+export function aBreed(breed: string) {
+  if (breed === MIXED) {
+    return "a mixed breed";
+  }
+
+  return `${/^[aeiou]/i.test(breed) ? "an" : "a"} ${breed}`;
 }

@@ -10,6 +10,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3010",
+    "dev:live": "wrangler dev --port 8787",
     "prepare": "svelte-kit sync || echo ''",
     "build": "vite build",
     "preview": "vite preview --port 3010",

@@ -2,6 +2,8 @@
   import { watch } from "runed";
   import { Marker } from "svelte-maplibre";
   import { on } from "svelte/events";
+  import { fade } from "svelte/transition";
+  import type { Kind } from "#lib/crowd.js";
   import type { Pet } from "#lib/pet.svelte.js";
   import type { OnHover } from "#lib/types.js";
   import Brine from "#lib/components/brand/brine.svelte";
@@ -10,18 +12,21 @@
   import { explorer } from "#lib/state.svelte.js";
   import { cn } from "#lib/utils.js";
   import { SUNK_BOROUGH } from "#lib/world.js";
+  import PingBurst from "./ping-burst.svelte";
 
   let {
     dog,
     at,
     beside,
     borough,
+    ping,
     onhover,
   }: {
     dog: Pet;
     at: [number, number];
     beside: number;
     borough: string;
+    ping: { n: number; kind: Kind; text: string } | null;
     onhover: OnHover;
   } = $props();
 
@@ -103,7 +108,7 @@
   lngLat={at}
   anchor="bottom"
   offset={[(beside % 2 === 1 ? 1 : -1) * Math.ceil(beside / 2) * 76, 0]}
-  zIndex={over || chosen ? 22 : 12}
+  zIndex={over || chosen || ping != null ? 22 : 12}
   class="cursor-auto!"
 >
   <button
@@ -200,6 +205,12 @@
         </span>
       {/key}
 
+      {#if ping != null && !afloat}
+        {#key ping.n}
+          <PingBurst kind={ping.kind} />
+        {/key}
+      {/if}
+
       {#if leaping}
         <svg
           viewBox="0 0 64 22"
@@ -229,6 +240,16 @@
       >
     </span>
   </button>
+
+  {#if ping != null}
+    <p
+      aria-hidden="true"
+      transition:fade={{ duration: 200 }}
+      class="pointer-events-none absolute bottom-[calc(100%+0.5rem)] left-1/2 w-max max-w-56 -translate-x-1/2 rounded-[10px] paper px-2.5 py-1.5 text-center font-display text-[0.71875rem] leading-snug text-foreground shadow-[0_6px_18px_rgb(20_16_10/0.35)] outline outline-foreground/15"
+    >
+      {ping.text}
+    </p>
+  {/if}
 </Marker>
 
 {#snippet ring(half: "back" | "front")}

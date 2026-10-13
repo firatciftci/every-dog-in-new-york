@@ -15,6 +15,8 @@
     SubwayStations,
   } from "#lib/types.js";
   import { plateOf } from "#lib/breeds.js";
+  import { crowd } from "#lib/crowd.svelte.js";
+  import { pet } from "#lib/pet.svelte.js";
   import { explorer } from "#lib/state.svelte.js";
   import { boardingAt, buildLines, crew, pick, pointAt } from "#lib/trains.js";
   import type { Padding } from "./camera";
@@ -72,6 +74,8 @@
   let below = $state(false);
   let nub = $state(0);
   let panelHeight = 0;
+  // Not $state: the frame loop writes it, and only the next frame reads it.
+  let told = { next: -1, halted: true, speed: 0, at: 0 };
   // The fleet outlives this component, so new ids start above the cars already parked.
   let minted = untrack(() => Math.max(0, ...fleet.map((car) => car.id)));
 
@@ -125,7 +129,7 @@
         }
 
         fleet.splice(i, 1);
-      } else if (!car.mine && !homes.has(car.slug)) {
+      } else if (!car.mine && car.peer == null && !homes.has(car.slug)) {
         riding.boardRider(car, car.stop);
       }
     }
@@ -198,6 +202,9 @@
 
   // The reader's own dog boards at the stop nearest home, in the direction they chose.
   watch([() => explorer.ride, () => built.length > 0], ([ride, ready]) => {
+    told = { next: -1, halted: true, speed: 0, at: 0 };
+    crowd.ride(null);
+
     for (let i = fleet.length - 1; i >= 0; i -= 1) {
       if (fleet[i]!.mine) {
         if (chosen === fleet[i]!.id) {
@@ -253,6 +260,112 @@
     fleet.push(car);
     chosen = car.id;
     meet(pointAt(line, car.at));
+  });
+
+  // Another reader's dog rides from their last departure, at the speed their own map ran it.
+  watch([() => crowd.peers, () => built.length > 0], ([peers, ready]) => {
+    if (!ready) {
+      return;
+    }
+
+    const aboard = new Map(
+      peers.flatMap((peer) =>
+        peer.ride == null
+          ? []
+          : [[peer.id, { dogs: peer.dogs, ride: peer.ride }] as const],
+      ),
+    );
+
+    for (let i = fleet.length - 1; i >= 0; i -= 1) {
+      const car = fleet[i]!;
+      if (car.peer == null) {
+        continue;
+      }
+
+      const ride = aboard.get(car.peer.id)?.ride;
+      if (
+        ride?.route === car.line.route &&
+        car.line.signs.includes(ride.sign)
+      ) {
+        continue;
+      }
+
+      if (chosen === car.id) {
+        release();
+      }
+
+      fleet.splice(i, 1);
+    }
+
+    for (const [id, { dogs, ride }] of aboard) {
+      const dog = dogs[ride.dog];
+      const home = riders.find((rider) => rider.slug === dog?.slug);
+      const line = built.find(
+        (l) =>
+          l.system === "subway" &&
+          l.route === ride.route &&
+          l.signs.includes(ride.sign),
+      );
+      const platform = line?.stops[ride.next];
+      if (dog == null || home == null || line == null || platform == null) {
+        continue;
+      }
+
+      const dir: 1 | -1 = line.signs[1] === ride.sign ? 1 : -1;
+      let car = fleet.find((other) => other.peer?.id === id);
+      if (
+        car?.peer?.next === ride.next &&
+        car.peer.speed === ride.speed &&
+        car.dir === dir
+      ) {
+        continue;
+      }
+
+      if (car == null) {
+        minted += 1;
+        car = riding.board(
+          line,
+          platform,
+          dir,
+          minted,
+          map.project(pointAt(line, ride.at)),
+          {
+            dog: dog.name ?? dog.breed,
+            breed: dog.breed,
+            plate: plateOf(dog.breed),
+            hood: home.hood,
+            borough: home.borough,
+            slug: dog.slug,
+          },
+        );
+        car.mine = false;
+        car.live = false;
+        fleet.push(car);
+      }
+
+      const isSameLeg = car.peer?.next === ride.next && car.dir === dir;
+      const at = !isSameLeg
+        ? ride.at
+        : dir === 1
+          ? Math.max(ride.at, car.at)
+          : Math.min(ride.at, car.at);
+
+      car.peer = {
+        id,
+        collar: dog.collar,
+        at,
+        next: ride.next,
+        speed: ride.speed,
+        stamp: performance.now(),
+      };
+      car.at = at;
+      car.dir = dir;
+      car.next = ride.next;
+      car.dest = ride.sign;
+      car.origin = dir === 1 ? line.signs[0] : line.signs[1];
+      car.getOff = ride.sign;
+      car.ahead = platform.name;
+    }
   });
 
   watch(
@@ -361,6 +474,28 @@
     return { x: here.x, y: here.y, lean: Math.max(-11, Math.min(11, lean)) };
   }
 
+  function play(car: Car, now: number) {
+    if (car.peer == null) {
+      return;
+    }
+
+    const { at, next, speed, stamp } = car.peer;
+    const platform = car.line.stops[next];
+    const run = at + (car.dir * speed * Math.max(0, now - stamp)) / 1000;
+    const isThere =
+      platform != null &&
+      (car.dir === 1 ? run >= platform.at : run <= platform.at);
+
+    car.at = Math.min(
+      Math.max(isThere ? platform.at : run, 0),
+      car.line.length,
+    );
+    car.halted = isThere;
+    if (isThere) {
+      car.stop = platform.name;
+    }
+  }
+
   function measure(car: Car) {
     return (el: HTMLElement) => {
       const take = () => {
@@ -422,8 +557,13 @@
       let chase: [number, number] | null = null;
 
       for (const car of fleet) {
-        if (car.mine && !car.live) {
-          const spot = place(car);
+        if (car.live || (!car.mine && car.peer == null)) {
+          continue;
+        }
+
+        play(car, now);
+        const spot = place(car);
+        if (car.mine || inside(spot, seen, 0)) {
           car.seed = `translate3d(${spot.x}px, ${spot.y}px, 0)`;
           car.live = true;
         }
@@ -435,8 +575,34 @@
         }
 
         car.followed = car.id === chosen;
-        if (!calm.current) {
+        if (car.peer != null) {
+          play(car, now);
+        } else if (!calm.current) {
           riding.step(car, dt, PX_PER_SEC * metersPerPx);
+        }
+
+        // A departure is all another reader needs: their map runs the leg from there.
+        if (car.mine) {
+          const speed = calm.current ? 0 : PX_PER_SEC * metersPerPx;
+          const isOff = !car.halted && (told.halted || told.next !== car.next);
+          const isFaster =
+            !car.halted &&
+            Math.abs(speed - told.speed) > told.speed * 0.3 &&
+            now - told.at > 1500;
+          told.halted = car.halted;
+
+          const dog = pet.dogs.findIndex((d) => d.id === explorer.ride?.id);
+          if ((isOff || isFaster) && dog >= 0) {
+            told = { next: car.next, halted: false, speed, at: now };
+            crowd.ride({
+              dog,
+              route: car.line.route,
+              sign: car.dest,
+              at: Math.round(car.at),
+              next: car.next,
+              speed: Math.round(speed),
+            });
+          }
         }
 
         // The followed dog got off: the map gets off with them, and the car leaves service.
@@ -467,7 +633,7 @@
 
       if (showing.length < want) {
         for (const car of fleet) {
-          if (showing.length >= want || car.live) {
+          if (showing.length >= want || car.live || car.peer != null) {
             continue;
           }
 
@@ -492,7 +658,9 @@
         showing.push({ car, ...place(car) });
 
         if (fleet.length > STABLED) {
-          const stale = fleet.findIndex((other) => !other.live);
+          const stale = fleet.findIndex(
+            (other) => !other.live && other.peer == null,
+          );
           if (stale >= 0) {
             fleet.splice(stale, 1);
           }
@@ -587,6 +755,7 @@
           open={car.id === chosen}
           grazed={car.id === grazed}
           mine={car.mine}
+          peer={car.peer?.collar ?? null}
         />
       </div>
     {/each}
@@ -626,6 +795,7 @@
             {below}
             {nub}
             mine={open.mine}
+            peer={open.peer != null}
             onadopt={() => {
               open.alighted = true;
               release();

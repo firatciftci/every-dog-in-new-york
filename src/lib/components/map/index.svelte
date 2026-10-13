@@ -11,23 +11,29 @@
   import { untrack } from "svelte";
   import { MapLibre } from "svelte-maplibre";
   import { MediaQuery } from "svelte/reactivity";
+  import { innerWidth } from "svelte/reactivity/window";
   import { fade } from "svelte/transition";
+  import type { Kind } from "#lib/crowd.js";
   import type { Painted } from "#lib/layers.js";
   import type { MapTheme, Slots } from "#lib/map-style.js";
   import type { Pet } from "#lib/pet.svelte.js";
   import type { HoodLabels, OnHover, PointerAt } from "#lib/types.js";
   import type { World } from "#lib/world.js";
-  import { plateOf } from "#lib/breeds.js";
+  import { aBreed, plateOf } from "#lib/breeds.js";
+  import { crowd } from "#lib/crowd.svelte.js";
   import { boundsOf } from "#lib/data.js";
   import { MAP_INK, reink } from "#lib/map-style.js";
   import { pawImage } from "#lib/paw.js";
+  import { pet } from "#lib/pet.svelte.js";
   import { plateIcon } from "#lib/plate-icon.js";
   import { explorer } from "#lib/state.svelte.js";
+  import { cn } from "#lib/utils.js";
   import { SUNK_BOROUGH } from "#lib/world.js";
   import type { Bounds, Padding } from "./camera";
   import { Camera, EASE, MAX_ZOOM, roamBounds } from "./camera";
   import CityLayers from "./city-layers.svelte";
   import Controls from "./controls.svelte";
+  import CrowdLayer from "./crowd-layer.svelte";
   import { draw } from "./draw.svelte";
   import { carUnder } from "./fleet.svelte";
   import HoodLayers from "./hood-layers.svelte";
@@ -59,6 +65,7 @@
     pointer,
     dens,
     den,
+    pinged,
     onready,
   }: {
     style: StyleSpecification;
@@ -78,6 +85,7 @@
       hood: string;
     }>;
     den: { at: [number, number]; borough: string; hood: string } | null;
+    pinged: { id: string; n: number; kind: Kind; text: string } | null;
     onready?: () => void;
   } = $props();
 
@@ -154,10 +162,54 @@
   let map = $state<MapLibreMap>();
   let cursor = $state<PointerAt | null>(null);
   let hoveredSlug = $state<string | null>(null);
+  let reader = $state<{
+    name: string | null;
+    breed: string;
+    hood: string;
+    at: PointerAt;
+  } | null>(null);
   let loaded = $state(false);
 
   // svelte-maplibre binds the instance before onload, so this is the only safe handle.
   const live = $derived(loaded ? (map ?? null) : null);
+
+  $effect(() => {
+    if (live == null) {
+      return;
+    }
+
+    return crowd.join();
+  });
+
+  $effect(() => {
+    crowd.show(
+      pet.dogs.map(({ name, breed, slug, collar }) => ({
+        name,
+        breed,
+        slug,
+        collar,
+      })),
+    );
+  });
+
+  const readerLine = $derived.by(() => {
+    if (reader == null) {
+      return null;
+    }
+
+    const breed = aBreed(reader.breed);
+    const kind = `${breed.slice(0, 1).toUpperCase()}${breed.slice(1)}`;
+
+    return reader.name == null
+      ? {
+          title: `${kind} from ${reader.hood}`,
+          line: "Added by a reader who has the map open now.",
+        }
+      : {
+          title: reader.name,
+          line: `${kind} from ${reader.hood}, added by a reader who has the map open now.`,
+        };
+  });
 
   // originalEvent is null for every programmatic camera move, and a tap that never moved fires no move at all.
   $effect(() => {
@@ -530,7 +582,7 @@
     }
   }}
 >
-  {#if loaded}
+  {#if loaded && live != null}
     <CityLayers
       lines={world.subway}
       stations={world.stations}
@@ -555,6 +607,19 @@
       {onhover}
     />
     <ParkLayers data={world.parks} {ink} {slots} {onhover} />
+    <CrowdLayer
+      map={live}
+      hoods={world.hoods}
+      scatter={world.dogs}
+      {ink}
+      {pointer}
+      onreader={(
+        next: { name: string | null; breed: string; hood: string } | null,
+        at: PointerAt | null,
+      ) => {
+        reader = next == null || at == null ? null : { ...next, at };
+      }}
+    />
     <LabelLayers
       hoods={labels}
       boroughs={world.boroughNames}
@@ -578,10 +643,11 @@
         at={spot.at}
         beside={spot.beside}
         borough={spot.borough}
+        ping={pinged?.id === spot.dog.id ? pinged : null}
         {onhover}
       />
     {/each}
-    {#if draw.shelters && live != null}
+    {#if draw.shelters}
       <Shelters
         map={live}
         shelters={world.shelters}
@@ -625,7 +691,26 @@
   <ParkNotice map={live} parks={world.parks} padding={stage} />
 {/if}
 
-{#if pointer && hovered != null && cursor != null}
+{#if pointer && reader != null && readerLine != null}
+  {const flip = $derived(reader.at.x > (innerWidth.current ?? 0) - 260)}
+  <div
+    aria-hidden="true"
+    transition:fade={{ duration: 90 }}
+    class={cn(
+      "pointer-events-none absolute z-40 w-max max-w-60 rounded-[14px] bg-card px-3 py-2 shadow-[0_8px_24px_rgb(30_26_20/0.24)]",
+      { "-translate-x-full": flip },
+    )}
+    style:left="{reader.at.x + (flip ? -14 : 14)}px"
+    style:top="{reader.at.y + 14}px"
+  >
+    <p class="slab text-[0.9375rem] leading-tight text-foreground">
+      {readerLine.title}
+    </p>
+    <p class="mt-0.5 text-[0.75rem] leading-snug text-muted-foreground">
+      {readerLine.line}
+    </p>
+  </div>
+{:else if pointer && hovered != null && cursor != null}
   <div transition:fade={{ duration: 90 }}>
     <Tooltip props={hovered} x={cursor.x} y={cursor.y} />
   </div>
