@@ -562,12 +562,16 @@ function rank(all: Array<Hit>) {
 
 function subjectHits(ctx: SuggestContext, needle: string): Array<Hit> {
   const out: Array<Hit> = [];
+  const crossed = needle.replaceAll(/\b(?:mix|mixed|mutt)\b/g, "crossbreed");
 
   for (const facet of FACETS) {
     const kind = facet === "breeds" ? "breed" : "name";
     const table = Object.entries(ctx.matrix[facet]);
     for (const [label, column] of table) {
-      const hit = score(label, needle);
+      const hit =
+        facet === "breeds"
+          ? Math.max(score(label, needle), score(label, crossed))
+          : score(label, needle);
       if (hit > 0) {
         out.push({
           id: `${facet}:${label}`,
