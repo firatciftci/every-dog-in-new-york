@@ -326,12 +326,12 @@
    "est": 708
   },
   {
-   "label": "Pembroke Welsh Corgi",
-   "est": 646
+   "label": "Australian Cattle Dog",
+   "est": 668
   },
   {
-   "label": "Pug",
-   "est": 634
+   "label": "Pembroke Welsh Corgi",
+   "est": 646
   }
  ],
  "max_dogs": 2663,
@@ -351,7 +351,7 @@
   2014,
   2021
  ],
- "lapse_dogs_seen": 76937,
+ "lapse_dogs_seen": 76935,
  "lapse_holding_now": 47282,
  "lapse_ratio": 1.95,
  "lapse_ratio_common_names": 1.89,

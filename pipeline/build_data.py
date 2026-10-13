@@ -118,6 +118,7 @@ BREED_RECODE = {
     "Terrier mix": "Terrier Crossbreed",
     "Dalmatian Mix": "Dalmatian Crossbreed",
     "St. Bernard": "Saint Bernard",
+    "Australian Cattledog": "Australian Cattle Dog",
 }
 
 

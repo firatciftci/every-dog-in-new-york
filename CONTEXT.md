@@ -6,7 +6,7 @@ Names for the things the site is made of. A module named after one of these shou
 
 **Neighborhood.** One of the city's 197 populated 2020 Neighborhood Tabulation Areas. Identified by `slug` everywhere in the app. `HoodProperties` carries its counts, its rates, and its four winner columns.
 
-**The matrix.** `matrix.json`: one column per breed and per name, one row per neighborhood, aligned by index with `matrix.slugs`. It holds the top 348 breeds and the top 305 names, so the breed columns sum to every dog with a breed on file and the name columns do not sum to every named dog.
+**The matrix.** `matrix.json`: one column per breed and per name, one row per neighborhood, aligned by index with `matrix.slugs`. It holds the top 347 breeds and the top 305 names, so the breed columns sum to every dog with a breed on file and the name columns do not sum to every named dog.
 
 **Facet.** Either `breeds` or `names`. `FACET_FIELDS` in `types.ts` is the one place a facet says which neighborhood columns belong to it: its leader, its share, its standout, and its lift. Nothing else spells that pairing out.
 

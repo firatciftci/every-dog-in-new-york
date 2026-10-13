@@ -154,7 +154,6 @@ const PLATES: Record<string, string> = {
   "American Staffordshire Terrier Crossbreed": "american-staffordshire-terrier",
   "Anatolian Shepherd Dog": "anatolian-shepherd-dog",
   "Australian Cattle Dog": "australian-cattledog",
-  "Australian Cattledog": "australian-cattledog",
   "Australian Kelpie": "australian-kelpie",
   "Australian Shepherd": "australian-shepherd",
   "Australian Shepherd Crossbreed": "australian-shepherd",

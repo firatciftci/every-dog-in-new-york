@@ -8,7 +8,7 @@
   import Plate from "#lib/components/brand/plate.svelte";
   import City from "#lib/components/story/city.svelte";
   import { PARKS } from "#lib/game/parks.js";
-  import { collarOf, everyone, nameKey, pet } from "#lib/pet.svelte.js";
+  import { collarOf, everyone, MIXED, nameKey, pet } from "#lib/pet.svelte.js";
   import { explorer } from "#lib/state.svelte.js";
   import { tone } from "#lib/stories.js";
   import { cn, count, lift, ordinal } from "#lib/utils.js";
@@ -153,6 +153,7 @@
       worst: worst == null ? null : { slug: worst[0], name: nameOf(worst[0]) },
       rank: mine < 0 ? null : mine + 1,
       of: ranked.length,
+      byBreed: breedRow != null,
       byName: nameRow != null,
     };
   });
@@ -387,6 +388,21 @@
           />
         {/key}
       </li>
+    {:else if dog.breed === MIXED}
+      <li>
+        <h3 class="slab text-[0.8125rem]">The breed</h3>
+        <p class="mt-1 text-[0.8125rem] leading-snug text-foreground/85">
+          The city’s license file has no entry for a mixed breed. It lists a mix
+          under one breed, such as Terrier Crossbreed, or lists no breed at all.
+          If one breed shows in {dog.name}, pick its Crossbreed entry to see how
+          common it is.
+        </p>
+        <p class="mt-1 text-[0.78125rem]">
+          {@render action("Change the breed", () => {
+            explorer.adopting = "edit";
+          })}
+        </p>
+      </li>
     {/if}
 
     {#if ages != null}
@@ -431,74 +447,81 @@
       </li>
     {/if}
 
-    <li>
-      <h3 class="slab text-[0.8125rem]">Where {dog.name} would blend in</h3>
-      <p class="mt-1 text-[0.8125rem] leading-snug text-foreground/85">
-        Shaded by how common {kin.byName
-          ? `both the breed and the name are`
-          : "the breed is"} for each neighborhood’s size.
-        {#if kin.best != null}
-          The best match is
-          {@render action(`${kin.best.name}`, () => {
-            if (kin.best != null) {
-              explorer.goTo(kin.best.slug);
-            }
-          })}{#if kin.worst != null}, and {dog.name} would stand out most in
-            {@render action(`${kin.worst.name}`, () => {
-              if (kin.worst != null) {
-                explorer.goTo(kin.worst.slug);
+    {#if kin.byBreed || kin.byName}
+      <li>
+        <h3 class="slab text-[0.8125rem]">Where {dog.name} would blend in</h3>
+        <p class="mt-1 text-[0.8125rem] leading-snug text-foreground/85">
+          Shaded by how common {kin.byBreed && kin.byName
+            ? "both the breed and the name are"
+            : kin.byBreed
+              ? "the breed is"
+              : "the name is"} for each neighborhood’s size.
+          {#if kin.best != null}
+            The best match is
+            {@render action(`${kin.best.name}`, () => {
+              if (kin.best != null) {
+                explorer.goTo(kin.best.slug);
               }
-            })}{/if}.
-        {/if}
-        {#if kin.rank != null}
-          {den.hood} ranks {ordinal(kin.rank)} of {kin.of}.
-        {/if}
-      </p>
-      <div class="relative mt-2 aspect-[1.05] w-full">
-        <City
-          class="absolute inset-0 mask-none!"
-          {hoods}
-          fill={(slug: string) => {
-            const score = kin.scores.get(slug);
+            })}{#if kin.worst != null}, and {dog.name} would stand out most in
+              {@render action(`${kin.worst.name}`, () => {
+                if (kin.worst != null) {
+                  explorer.goTo(kin.worst.slug);
+                }
+              })}{/if}.
+          {/if}
+          {#if kin.rank != null}
+            {den.hood} ranks {ordinal(kin.rank)} of {kin.of}.
+          {/if}
+        </p>
+        <div class="relative mt-2 aspect-[1.05] w-full">
+          <City
+            class="absolute inset-0 mask-none!"
+            {hoods}
+            fill={(slug: string) => {
+              const score = kin.scores.get(slug);
 
-            return score == null
-              ? "var(--color-story-ground)"
-              : tone(Math.log(score) / Math.log(kin.byName ? 2.2 : 1.7));
-          }}
+              return score == null
+                ? "var(--color-story-ground)"
+                : tone(
+                    Math.log(score) /
+                      Math.log(kin.byBreed && kin.byName ? 2.2 : 1.7),
+                  );
+            }}
+          >
+            {#snippet over(
+              project: (lon: number, lat: number) => [number, number],
+            )}
+              {const spot = $derived(project(den.at[0], den.at[1]))}
+              {#if !afloat}
+                <circle
+                  cx={spot[0]}
+                  cy={spot[1]}
+                  r="9"
+                  fill={collar}
+                  opacity="0.3"
+                  class="origin-center transform-fill motion-safe:animate-[beacon_calc(var(--1s)*2.6)_ease-in-out_infinite]"
+                />
+                <circle
+                  cx={spot[0]}
+                  cy={spot[1]}
+                  r="4"
+                  fill={collar}
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+              {/if}
+            {/snippet}
+          </City>
+        </div>
+        <div
+          class="mt-1 flex justify-between text-[0.65625rem] text-muted-foreground"
+          aria-hidden="true"
         >
-          {#snippet over(
-            project: (lon: number, lat: number) => [number, number],
-          )}
-            {const spot = $derived(project(den.at[0], den.at[1]))}
-            {#if !afloat}
-              <circle
-                cx={spot[0]}
-                cy={spot[1]}
-                r="9"
-                fill={collar}
-                opacity="0.3"
-                class="origin-center transform-fill motion-safe:animate-[beacon_calc(var(--1s)*2.6)_ease-in-out_infinite]"
-              />
-              <circle
-                cx={spot[0]}
-                cy={spot[1]}
-                r="4"
-                fill={collar}
-                stroke="white"
-                stroke-width="1.5"
-              />
-            {/if}
-          {/snippet}
-        </City>
-      </div>
-      <div
-        class="mt-1 flex justify-between text-[0.65625rem] text-muted-foreground"
-        aria-hidden="true"
-      >
-        <span>stands out</span>
-        <span>blends in</span>
-      </div>
-    </li>
+          <span>stands out</span>
+          <span>blends in</span>
+        </div>
+      </li>
+    {/if}
   </ul>
 
   <div class="mt-5 grid gap-2">

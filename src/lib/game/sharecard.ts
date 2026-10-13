@@ -1,4 +1,5 @@
 import type { MapTheme } from "#lib/map-style.js";
+import { MIXED } from "#lib/pet.svelte.js";
 import { PALETTES, TAU, tinted } from "./ink";
 
 export type Card = {
@@ -61,7 +62,11 @@ export async function shareCard(card: Card): Promise<Blob | null> {
   ctx.fillStyle = pal.ink;
   ctx.font = '26px "Source Serif 4 Variable", Georgia, serif';
   ctx.textBaseline = "alphabetic";
-  ctx.fillText(`${card.dog}, a ${card.breed}`, px, py + 48);
+  ctx.fillText(
+    `${card.dog}, a ${card.breed === MIXED ? "mixed breed" : card.breed}`,
+    px,
+    py + 48,
+  );
 
   ctx.font = '24px "Alfa Slab One", serif';
   ctx.fillStyle = primary;

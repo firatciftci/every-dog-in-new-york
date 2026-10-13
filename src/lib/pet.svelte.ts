@@ -22,6 +22,8 @@ export type Pet = {
   collar: Collar;
 };
 
+export const MIXED = "Mixed breed";
+
 export const FIRST_BORN = 2006;
 
 export const NAME_LONGEST = 20;
@@ -65,7 +67,7 @@ function check(raw: unknown, at: number): Pet | null {
   return {
     id: typeof id === "string" ? id : `dog-${at}`,
     name: name.trim().slice(0, NAME_LONGEST),
-    breed,
+    breed: breed === "Australian Cattledog" ? "Australian Cattle Dog" : breed,
     slug,
     born,
     collar: COLLARS.find((c) => c.key === collar)?.key ?? "red",

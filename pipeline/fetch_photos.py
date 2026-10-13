@@ -52,7 +52,6 @@ ARTICLES = {
     "Jindo": "Korean Jindo",
     "Boxer": "Boxer (dog)",
     "Bull Dog": "Bulldog",
-    "Australian Cattledog": "Australian Cattle Dog",
     "Miniature Australian Shepherd": "Miniature American Shepherd",
     "Doberman Pinscher": "Dobermann",
     "Cocker Spaniel": "American Cocker Spaniel",

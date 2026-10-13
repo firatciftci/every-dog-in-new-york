@@ -8,6 +8,7 @@
     placeholder,
     options,
     value,
+    fallback,
     onpick,
   }: {
     id: string;
@@ -18,8 +19,10 @@
       label: string;
       sub?: string;
       breed?: string;
+      also?: string;
     }>;
     value: string | null;
+    fallback?: string;
     onpick: (key: string) => void;
   } = $props();
 
@@ -39,21 +42,26 @@
       return options.slice(0, SHOWN);
     }
 
+    const words = q.split(/\s+/);
     const starts: Array<(typeof options)[number]> = [];
     const within: Array<(typeof options)[number]> = [];
     for (const option of options) {
       const name = option.label.toLowerCase();
+      const all = `${name} ${option.also ?? ""}`;
       if (name.startsWith(q)) {
         starts.push(option);
       } else if (
-        name.includes(q) ||
+        words.every((word) => all.includes(word)) ||
         (option.sub?.toLowerCase().startsWith(q) ?? false)
       ) {
         within.push(option);
       }
     }
 
-    return [...starts, ...within].slice(0, SHOWN);
+    const found = [...starts, ...within].slice(0, SHOWN);
+    const backup = options.find((o) => o.key === fallback);
+
+    return found.length === 0 && backup != null ? [backup] : found;
   });
 
   function pick(key: string) {

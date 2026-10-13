@@ -1,7 +1,7 @@
 <script lang="ts">
   import { TriangleAlertIcon, XIcon } from "@lucide/svelte";
   import type { System } from "#lib/rail.js";
-  import { COLLARS, newId, pet } from "#lib/pet.svelte.js";
+  import { COLLARS, MIXED, newId, pet } from "#lib/pet.svelte.js";
   import { RAILROAD } from "#lib/rail.js";
   import { explorer } from "#lib/state.svelte.js";
   import Bullet from "./bullet.svelte";
@@ -117,14 +117,21 @@
       >
         {dog}
       </button>
-      <button
-        type="button"
-        onclick={leave(() => explorer.setFocus("breeds", breed))}
-        aria-label="Every {breed}"
-        class="block max-w-full cursor-pointer truncate py-0.5 text-left text-[0.71875rem] leading-snug text-muted-foreground underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:text-foreground hover:decoration-primary"
-      >
-        {breed}
-      </button>
+      {#if breed === MIXED}
+        <span
+          class="block max-w-full truncate py-0.5 text-[0.71875rem] leading-snug text-muted-foreground"
+          >{breed}</span
+        >
+      {:else}
+        <button
+          type="button"
+          onclick={leave(() => explorer.setFocus("breeds", breed))}
+          aria-label="Every {breed}"
+          class="block max-w-full cursor-pointer truncate py-0.5 text-left text-[0.71875rem] leading-snug text-muted-foreground underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:text-foreground hover:decoration-primary"
+        >
+          {breed}
+        </button>
+      {/if}
       <button
         type="button"
         onclick={leave(() => explorer.goTo(slug))}
