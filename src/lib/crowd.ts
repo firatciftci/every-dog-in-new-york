@@ -31,4 +31,11 @@ export type Told =
 export type Heard =
   | { t: "all"; you: string; peers: Array<Peer> }
   | { t: "up"; peers: Array<Peer>; gone: Array<string> }
-  | { t: "ping"; dog: number; kind: Kind; from: Shown | null };
+  | {
+      t: "ping";
+      dog: number;
+      kind: Kind;
+      from: Shown | null;
+      by: string;
+      back: number | null;
+    };

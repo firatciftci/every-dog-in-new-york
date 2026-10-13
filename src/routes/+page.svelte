@@ -23,11 +23,15 @@
   import { mode } from "mode-watcher";
   import { useSearchParams } from "runed/kit";
   import { untrack } from "svelte";
+  import { backOut, cubicIn } from "svelte/easing";
+  import { prefersReducedMotion } from "svelte/motion";
+  import { fade, fly } from "svelte/transition";
   import type { BaseStyle, MapTheme } from "#lib/map-style.js";
   import { aBreed } from "#lib/breeds.js";
   import About from "#lib/components/chrome/about.svelte";
   import Adopt from "#lib/components/chrome/adopt.svelte";
   import Desktop from "#lib/components/chrome/desktop.svelte";
+  import HelloToast from "#lib/components/chrome/hello-toast.svelte";
   import Help from "#lib/components/chrome/help.svelte";
   import Intro from "#lib/components/chrome/intro.svelte";
   import Loader from "#lib/components/chrome/loader.svelte";
@@ -46,7 +50,7 @@
   import { cut, facetSwatches } from "#lib/layers.js";
   import { loadBaseStyle } from "#lib/map-style.js";
   import { isNarrowLayout, rootFontSize } from "#lib/narrow-layout.svelte.js";
-  import { pet } from "#lib/pet.svelte.js";
+  import { MIXED, pet } from "#lib/pet.svelte.js";
   import { QUERY } from "#lib/share.js";
   import { explorer } from "#lib/state.svelte.js";
   import { setSwatches } from "#lib/swatches.svelte.js";
@@ -147,37 +151,47 @@
 
   const den = $derived(dens.find((d) => d.dog.id === pet.dog?.id) ?? null);
 
-  // Another reader said hello to one of this reader's dogs, in one sentence for the medallion and the status line.
-  const pinged = $derived.by(() => {
-    const heard = crowd.pinged;
-    const to = heard == null ? undefined : pet.dogs[heard.dog];
-    if (heard == null || to == null) {
-      return null;
-    }
+  // Hellos other readers sent this reader's dogs, worded once for the toasts, the medallion, and the status line.
+  const hellos = $derived(
+    crowd.hellos.flatMap((heard) => {
+      const to = pet.dogs[heard.dog];
+      if (to == null) {
+        return [];
+      }
 
-    const { from } = heard;
-    const home =
-      from == null
-        ? undefined
-        : data.hoods.features.find((f) => f.properties.slug === from.slug)
-            ?.properties.name;
-    const kind = from == null ? "" : `${aBreed(from.breed)} from ${home}`;
-    let who = "Another reader";
-    if (from != null && home != null) {
-      who =
-        from.name == null
-          ? `${kind.slice(0, 1).toUpperCase()}${kind.slice(1)}`
-          : `${from.name}, ${kind},`;
-    }
+      const { from } = heard;
+      const home =
+        from == null
+          ? undefined
+          : data.hoods.features.find((f) => f.properties.slug === from.slug)
+              ?.properties;
+      const did = {
+        sniff: `came over to sniff ${to.name}`,
+        ball: `tossed ${to.name} a ball`,
+        bark: `barked hello at ${to.name}`,
+      }[heard.kind];
+      let who = "Another reader";
+      let where: string | null = null;
+      let text = `Another reader ${did}.`;
+      if (from != null && home != null) {
+        const breed = aBreed(from.breed);
+        who =
+          from.name ??
+          `A reader’s ${from.breed === MIXED ? "mixed breed" : from.breed}`;
+        where =
+          from.name == null
+            ? `From ${home.name}, ${home.borough}.`
+            : `${breed.slice(0, 1).toUpperCase()}${breed.slice(1)} from ${home.name}, ${home.borough}.`;
+        text =
+          from.name == null
+            ? `${breed.slice(0, 1).toUpperCase()}${breed.slice(1)} from ${home.name} ${did}.`
+            : `${from.name}, ${breed} from ${home.name}, ${did}.`;
+      }
 
-    const did = {
-      sniff: `came over to sniff ${to.name}`,
-      ball: `tossed ${to.name} a ball`,
-      bark: `barked hello at ${to.name}`,
-    }[heard.kind];
-
-    return { id: to.id, n: heard.n, kind: heard.kind, text: `${who} ${did}.` };
-  });
+      return [{ ...heard, id: to.id, headline: `${who} ${did}.`, where, text }];
+    }),
+  );
+  const pinged = $derived(hellos.at(-1) ?? null);
 
   const painted = $derived(
     cut(world.hoods, data.matrix, explorer.view, explorer.filters, theme),
@@ -323,6 +337,44 @@
 
   {#if mapReady}
     <ModePill />
+  {/if}
+
+  {#if mapReady}
+    {const front = $derived(hellos.at(0))}
+    <section
+      aria-label="Hellos from other readers"
+      class="pointer-events-none absolute inset-x-3 top-[max(0.75rem,env(safe-area-inset-top))] z-45 mx-auto grid max-w-sm @min-[55rem]:inset-x-auto @min-[55rem]:top-5 @min-[55rem]:right-5 @min-[55rem]:w-88 @min-[55rem]:max-w-none"
+    >
+      {#each hellos.slice(1, 3) as hello, depth (hello.n)}
+        <span
+          aria-hidden="true"
+          transition:fade={{ duration: prefersReducedMotion.current ? 0 : 200 }}
+          class="absolute inset-x-0 top-0 -z-1 h-full rounded-[14px] paper shadow-[0_6px_16px_rgb(20_16_10/0.3)] outline outline-foreground/15 transition-[translate,scale] duration-300"
+          style:translate="0 {10 * (depth + 1)}px"
+          style:scale={1 - 0.045 * (depth + 1)}
+          style:z-index={-1 - depth}
+        ></span>
+      {/each}
+      {#if front != null}
+        {#key front.n}
+          <div
+            class="col-start-1 row-start-1"
+            in:fly={{
+              y: -22,
+              duration: prefersReducedMotion.current ? 0 : 420,
+              easing: backOut,
+            }}
+            out:fly={{
+              x: 48,
+              duration: prefersReducedMotion.current ? 0 : 240,
+              easing: cubicIn,
+            }}
+          >
+            <HelloToast hello={front} />
+          </div>
+        {/key}
+      {/if}
+    </section>
   {/if}
 
   {#if !mapReady}

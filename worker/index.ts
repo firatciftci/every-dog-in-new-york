@@ -179,11 +179,14 @@ export class City extends DurableObject<Env> {
     }
 
     this.#greeted.set(`${peer.id}>${to}`, now);
+    const back = from === null ? -1 : kept.indexOf(from);
     const heard: Heard = {
       t: "ping",
       dog: at,
       kind: kind as Kind,
-      from: from === null ? null : (peer.dogs[kept.indexOf(from)] ?? null),
+      from: peer.dogs[back] ?? null,
+      by: peer.id,
+      back: back === -1 ? null : back,
     };
     try {
       target.send(JSON.stringify(heard));

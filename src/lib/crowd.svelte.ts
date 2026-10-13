@@ -7,7 +7,7 @@ const PING = 50_000;
 const AWAY = 60_000;
 const FIRST_WAIT = 2000;
 const LONGEST_WAIT = 120_000;
-const HEARD_FOR = 6000;
+const MOST_HELLOS = 3;
 
 function readHidden() {
   if (!browser) {
@@ -25,7 +25,7 @@ function readHidden() {
  * Other readers on the map right now, and what this reader shows them in return.
  */
 class Crowd {
-  #heard: ReturnType<typeof setTimeout> | undefined;
+  #count = 0;
   #hidden = $state(readHidden());
   #you: string | null = null;
   #socket: WebSocket | null = null;
@@ -34,14 +34,19 @@ class Crowd {
   #ears: AudioContext | null = null;
   peers = $state.raw<ReadonlyArray<Peer>>([]);
   /**
-   * The last hello another reader sent one of this reader's dogs, until it fades.
+   * Hellos other readers sent this reader's dogs, oldest first, until each is dismissed.
+   * `by` and `back` name the sender and the sender's dog, for a reply.
    */
-  pinged = $state.raw<{
-    n: number;
-    dog: number;
-    kind: Kind;
-    from: Shown | null;
-  } | null>(null);
+  hellos = $state.raw<
+    ReadonlyArray<{
+      n: number;
+      dog: number;
+      kind: Kind;
+      from: Shown | null;
+      by: string;
+      back: number | null;
+    }>
+  >([]);
 
   #send(told: Told) {
     if (this.#socket?.readyState === WebSocket.OPEN) {
@@ -185,17 +190,23 @@ class Crowd {
 
   #hear(heard: Heard) {
     if (heard.t === "ping") {
-      clearTimeout(this.#heard);
-      this.pinged = {
-        n: (this.pinged?.n ?? 0) + 1,
-        dog: heard.dog,
-        kind: heard.kind,
-        from: heard.from,
-      };
+      if (this.hellos.length >= MOST_HELLOS) {
+        return;
+      }
+
+      this.#count += 1;
+      this.hellos = [
+        ...this.hellos,
+        {
+          n: this.#count,
+          dog: heard.dog,
+          kind: heard.kind,
+          from: heard.from,
+          by: heard.by,
+          back: heard.back,
+        },
+      ];
       this.#yip(heard.kind);
-      this.#heard = setTimeout(() => {
-        this.pinged = null;
-      }, HEARD_FOR);
 
       return;
     }
@@ -328,6 +339,10 @@ class Crowd {
   ping(to: string, dog: number, kind: Kind, from: number | null) {
     this.#yip(kind);
     this.#send({ t: "ping", to, dog, kind, from: this.#hidden ? null : from });
+  }
+
+  dismiss(n: number) {
+    this.hellos = this.hellos.filter((hello) => hello.n !== n);
   }
 
   ride(ride: Ride | null) {

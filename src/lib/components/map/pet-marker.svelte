@@ -2,7 +2,6 @@
   import { watch } from "runed";
   import { Marker } from "svelte-maplibre";
   import { on } from "svelte/events";
-  import { fade } from "svelte/transition";
   import type { Kind } from "#lib/crowd.js";
   import type { Pet } from "#lib/pet.svelte.js";
   import type { OnHover } from "#lib/types.js";
@@ -26,7 +25,7 @@
     at: [number, number];
     beside: number;
     borough: string;
-    ping: { n: number; kind: Kind; text: string } | null;
+    ping: { n: number; kind: Kind } | null;
     onhover: OnHover;
   } = $props();
 
@@ -240,16 +239,6 @@
       >
     </span>
   </button>
-
-  {#if ping != null}
-    <p
-      aria-hidden="true"
-      transition:fade={{ duration: 200 }}
-      class="pointer-events-none absolute bottom-[calc(100%+0.5rem)] left-1/2 w-max max-w-56 -translate-x-1/2 rounded-[10px] paper px-2.5 py-1.5 text-center font-display text-[0.71875rem] leading-snug text-foreground shadow-[0_6px_18px_rgb(20_16_10/0.35)] outline outline-foreground/15"
-    >
-      {ping.text}
-    </p>
-  {/if}
 </Marker>
 
 {#snippet ring(half: "back" | "front")}

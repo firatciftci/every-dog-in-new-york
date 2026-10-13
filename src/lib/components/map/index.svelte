@@ -85,7 +85,7 @@
       hood: string;
     }>;
     den: { at: [number, number]; borough: string; hood: string } | null;
-    pinged: { id: string; n: number; kind: Kind; text: string } | null;
+    pinged: { id: string; n: number; kind: Kind } | null;
     onready?: () => void;
   } = $props();
 
