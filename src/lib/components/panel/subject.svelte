@@ -1,18 +1,18 @@
 <script lang="ts">
   import type { Said } from "#lib/photos.js";
   import type { Filter } from "#lib/query.js";
-  import type { Facet, HoodCollection, Matrix } from "#lib/types.js";
+  import type { Everyone, Facet, HoodCollection, Matrix } from "#lib/types.js";
   import Plate from "#lib/components/brand/plate.svelte";
   import ModeLine from "#lib/components/chrome/mode-line.svelte";
   import Gallery from "#lib/components/panel/gallery.svelte";
   import PetTag from "#lib/components/panel/pet-tag.svelte";
   import Trend from "#lib/components/panel/trend.svelte";
-  import { nameKey, pet } from "#lib/pet.svelte.js";
+  import { everyone, nameKey, pet } from "#lib/pet.svelte.js";
   import { saidOf } from "#lib/photos.js";
   import { filterKey, wouldKeep } from "#lib/query.js";
   import { explorer } from "#lib/state.svelte.js";
   import { FACET_FIELDS } from "#lib/types.js";
-  import { count } from "#lib/utils.js";
+  import { count, ordinal } from "#lib/utils.js";
 
   let {
     facet,
@@ -45,6 +45,50 @@
       live = false;
       said = null;
     };
+  });
+
+  let city = $state<Everyone | null>(null);
+
+  $effect(() => {
+    let live = true;
+    void everyone().then((found) => {
+      if (live) {
+        city = found;
+      }
+    });
+
+    return () => {
+      live = false;
+    };
+  });
+
+  const standing = $derived.by(() => {
+    const totals: Array<number> = [];
+    let mine = 0;
+    if (facet === "names") {
+      totals.push(...Object.values(city?.names ?? {}));
+      mine = city?.names[label] ?? 0;
+    } else {
+      for (const [key, row] of Object.entries(matrix.breeds)) {
+        let n = 0;
+        for (const v of row) {
+          n += v;
+        }
+        totals.push(n);
+        if (key === label) {
+          mine = n;
+        }
+      }
+    }
+
+    let rank = 1;
+    for (const n of totals) {
+      if (n > mine) {
+        rank += 1;
+      }
+    }
+
+    return { n: Math.round(mine), rank, of: totals.length };
   });
 
   const yours = $derived(
@@ -149,6 +193,21 @@
   </div>
 
   <div class="h-1.25 rounded-[50%] bg-primary/70"></div>
+
+  {#if standing.n > 0}
+    <p class="mt-2.5 text-[0.9375rem] leading-snug text-foreground/85">
+      <strong class="numeric font-bold text-foreground"
+        >{count(standing.n)}</strong
+      >
+      licensed {standing.n === 1 ? "dog" : "dogs"}, {facet === "breeds"
+        ? standing.rank === 1
+          ? "the most common breed"
+          : `the ${ordinal(standing.rank)} most common of ${count(standing.of)} breeds`
+        : standing.rank === 1
+          ? "the most common name"
+          : `the ${ordinal(standing.rank)} most common name`}.
+    </p>
+  {/if}
 
   {#each yours as dog (dog.id)}
     <PetTag

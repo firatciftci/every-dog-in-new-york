@@ -101,7 +101,12 @@
     }
 
     const n = city.names[key] ?? 0;
-    const rank = n === 0 ? null : Object.keys(city.names).indexOf(key) + 1;
+    let rank: number | null = n === 0 ? null : 1;
+    for (const other of Object.values(city.names)) {
+      if (rank != null && other > n) {
+        rank += 1;
+      }
+    }
     const here = nameRow == null || at < 0 ? null : (nameRow[at] ?? 0);
 
     return { n, rank, here };
