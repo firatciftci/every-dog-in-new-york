@@ -1,0 +1,20 @@
+<!--
+  The mark is the map's own paw print, which is the same four toes and tilted pad
+  pawImage() stamps once per 75 licensed dogs, laid on the brand ground. Struck from
+  that drawing rather than a symmetrical icon, so the thing in the tab strip is the
+  thing on the map. The toes are spread a little and the pad dropped a little, because
+  the print as the map draws it closes up into one shape at 16 pixels.
+
+  Rounded here and squared off by build_social.py for the copies Apple and Android
+  round themselves.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#bc5030"/>
+  <g fill="#fdf9f3" transform="translate(-0.209 -0.133) scale(1.0373)">
+    <ellipse cx="6.57" cy="10.60" rx="2.85" ry="3.59" transform="rotate(-13.75 6.57 10.60)"/>
+    <ellipse cx="12.84" cy="7.60" rx="3.04" ry="3.96" transform="rotate(-4.58 12.84 7.60)"/>
+    <ellipse cx="19.55" cy="8.40" rx="2.94" ry="3.77" transform="rotate(6.88 19.55 8.40)"/>
+    <ellipse cx="24.94" cy="13.40" rx="2.58" ry="3.22" transform="rotate(17.19 24.94 13.40)"/>
+    <ellipse cx="14.60" cy="21.50" rx="6.82" ry="5.95" transform="rotate(3.44 14.60 21.50)"/>
+  </g>
+</svg>

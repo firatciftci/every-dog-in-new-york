@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "svelte": true,
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "objectWrap": "collapse",
+  "sortTailwindcss": {
+    "stylesheet": "./src/app.css",
+    "functions": ["tv", "cn", "tw"],
+    "attributes": ["triggerClass", "contentClass"]
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "pnpm-lock.yaml",
+    ".svelte-kit",
+    "src/lib/paraglide",
+    "project.inlang",
+    "build",
+    "static",
+    "pipeline",
+    "worker-configuration.d.ts"
+  ]
+}

@@ -1,0 +1,16 @@
+minimumReleaseAgeExclude:
+  - "@sveltejs/*"
+  - eslint-plugin-svelte
+  - pnpm
+  - shadcn-svelte
+  - svelte
+  - svelte-check
+
+engineStrict: true
+
+patchedDependencies:
+  runed@0.37.1: patches/runed@0.37.1.patch
+
+allowBuilds:
+  esbuild: true
+  workerd: true

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f7f5f1"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#110f0b"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin />
+    <link rel="dns-prefetch" href="https://tiles.openfreemap.org" />
+    <script>
+      (() => {
+        const agent = navigator.userAgent;
+        const isAppleTouch =
+          /iPhone|iPad|iPod/.test(agent) ||
+          (/Macintosh/.test(agent) && navigator.maxTouchPoints > 1);
+
+        if (!isAppleTouch || !CSS.supports("font", "-apple-system-body"))
+          return;
+
+        // WebKit exposes Dynamic Type only through this font; 17px is its default size.
+        const probe = document.createElement("span");
+        probe.style.cssText =
+          "position:absolute;visibility:hidden;font:-apple-system-body";
+
+        const apply = () => {
+          document.documentElement.append(probe);
+          const scale = Math.min(
+            Math.max(parseFloat(getComputedStyle(probe).fontSize) / 17, 1),
+            2,
+          );
+          probe.remove();
+          document.documentElement.style.fontSize =
+            scale === 1 ? "" : `${scale * 100}%`;
+        };
+
+        apply();
+        addEventListener("pageshow", apply);
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible") apply();
+        });
+      })();
+    </script>
+    <script defer src="https://assets.onedollarstats.com/stonks.js"></script>
+    <script>
+      addEventListener(
+        "pointerover",
+        (event) => {
+          const pointer = event.pointerType === "mouse" ? "fine" : "coarse";
+          if (document.documentElement.dataset.pointer !== pointer)
+            document.documentElement.dataset.pointer = pointer;
+        },
+        { capture: true, passive: true },
+      );
+    </script>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="tap">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+[project]
+name = "every-dog-in-new-york-pipeline"
+version = "1.0.0"
+description = "Builds the neighborhood partition and dog-license aggregates behind Every Dog in New York"
+requires-python = ">=3.13"
+dependencies = [
+  "numpy>=2.5",
+  "scipy>=1.18",
+  "shapely>=2.1",
+  "matplotlib>=3.10",
+  "openpyxl>=3.1",
+  "pillow>=11.0",
+  "google-genai>=2.21",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.16", "ty>=0.0.74"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4", "BLE"]

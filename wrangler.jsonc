@@ -1,0 +1,7 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "every-dog-in-new-york",
+  "compatibility_date": "2026-08-31",
+  "assets": { "directory": "./build", "not_found_handling": "404-page" },
+  "routes": [{ "pattern": "everydog.nyc", "custom_domain": true }],
+}

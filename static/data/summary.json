@@ -1,0 +1,359 @@
+{
+ "extract_year": "2026",
+ "licenses": 96459,
+ "breed_unknown": 8141,
+ "licenses_placed": 95960,
+ "licenses_unallocated": 504,
+ "neighborhoods": 197,
+ "zips_in_data": 440,
+ "zips_matched": 183,
+ "residential_units": 3732845,
+ "split_error": 0.2288,
+ "split_error_flat": 0.2911,
+ "city_top_names": [
+  {
+   "label": "Luna",
+   "est": 1177
+  },
+  {
+   "label": "Bella",
+   "est": 991
+  },
+  {
+   "label": "Coco",
+   "est": 784
+  },
+  {
+   "label": "Max",
+   "est": 754
+  },
+  {
+   "label": "Milo",
+   "est": 728
+  },
+  {
+   "label": "Charlie",
+   "est": 721
+  },
+  {
+   "label": "Teddy",
+   "est": 605
+  },
+  {
+   "label": "Lola",
+   "est": 542
+  },
+  {
+   "label": "Rocky",
+   "est": 521
+  },
+  {
+   "label": "Daisy",
+   "est": 513
+  },
+  {
+   "label": "Lucy",
+   "est": 507
+  },
+  {
+   "label": "Leo",
+   "est": 445
+  },
+  {
+   "label": "Bailey",
+   "est": 413
+  },
+  {
+   "label": "Lucky",
+   "est": 396
+  },
+  {
+   "label": "Toby",
+   "est": 394
+  },
+  {
+   "label": "Penny",
+   "est": 378
+  },
+  {
+   "label": "Buddy",
+   "est": 378
+  },
+  {
+   "label": "Oliver",
+   "est": 377
+  },
+  {
+   "label": "Rosie",
+   "est": 368
+  },
+  {
+   "label": "Cooper",
+   "est": 355
+  },
+  {
+   "label": "Mia",
+   "est": 334
+  },
+  {
+   "label": "Chloe",
+   "est": 331
+  },
+  {
+   "label": "Oreo",
+   "est": 331
+  },
+  {
+   "label": "Stella",
+   "est": 329
+  },
+  {
+   "label": "Lily",
+   "est": 320
+  },
+  {
+   "label": "Princess",
+   "est": 313
+  },
+  {
+   "label": "Bruno",
+   "est": 295
+  },
+  {
+   "label": "Pepper",
+   "est": 294
+  },
+  {
+   "label": "Ollie",
+   "est": 289
+  },
+  {
+   "label": "Cookie",
+   "est": 286
+  },
+  {
+   "label": "Ruby",
+   "est": 285
+  },
+  {
+   "label": "Blue",
+   "est": 278
+  },
+  {
+   "label": "Benji",
+   "est": 275
+  },
+  {
+   "label": "Bear",
+   "est": 265
+  },
+  {
+   "label": "Molly",
+   "est": 258
+  },
+  {
+   "label": "Archie",
+   "est": 257
+  },
+  {
+   "label": "Frankie",
+   "est": 250
+  },
+  {
+   "label": "Ginger",
+   "est": 249
+  },
+  {
+   "label": "Lulu",
+   "est": 244
+  },
+  {
+   "label": "Prince",
+   "est": 236
+  }
+ ],
+ "city_top_breeds": [
+  {
+   "label": "Labrador (or Crossbreed)",
+   "est": 5326
+  },
+  {
+   "label": "Yorkshire Terrier",
+   "est": 4025
+  },
+  {
+   "label": "Shih Tzu",
+   "est": 4003
+  },
+  {
+   "label": "Pit Bull (or Mix)",
+   "est": 3384
+  },
+  {
+   "label": "Chihuahua",
+   "est": 3253
+  },
+  {
+   "label": "Terrier Crossbreed",
+   "est": 2705
+  },
+  {
+   "label": "Poodle Crossbreed",
+   "est": 2396
+  },
+  {
+   "label": "Shih Tzu Crossbreed",
+   "est": 2273
+  },
+  {
+   "label": "Maltese",
+   "est": 2051
+  },
+  {
+   "label": "Poodle",
+   "est": 2020
+  },
+  {
+   "label": "Goldendoodle",
+   "est": 1973
+  },
+  {
+   "label": "Chihuahua Crossbreed",
+   "est": 1818
+  },
+  {
+   "label": "French Bulldog",
+   "est": 1815
+  },
+  {
+   "label": "Pomeranian",
+   "est": 1632
+  },
+  {
+   "label": "Golden Retriever",
+   "est": 1601
+  },
+  {
+   "label": "Havanese",
+   "est": 1388
+  },
+  {
+   "label": "German Shepherd Dog",
+   "est": 1271
+  },
+  {
+   "label": "Poodle (Toy)",
+   "est": 1190
+  },
+  {
+   "label": "Poodle (Miniature)",
+   "est": 1175
+  },
+  {
+   "label": "Australian Shepherd",
+   "est": 1089
+  },
+  {
+   "label": "Maltipoo",
+   "est": 1086
+  },
+  {
+   "label": "Jindo",
+   "est": 1074
+  },
+  {
+   "label": "Labradoodle",
+   "est": 1056
+  },
+  {
+   "label": "Beagle",
+   "est": 1024
+  },
+  {
+   "label": "Dachshund",
+   "est": 1016
+  },
+  {
+   "label": "Miniature Schnauzer",
+   "est": 1014
+  },
+  {
+   "label": "Siberian Husky",
+   "est": 1010
+  },
+  {
+   "label": "Yorkshire Terrier Crossbreed",
+   "est": 1010
+  },
+  {
+   "label": "Cavalier King Charles Spaniel",
+   "est": 977
+  },
+  {
+   "label": "Shiba Inu",
+   "est": 969
+  },
+  {
+   "label": "Cavalier King Charles Spaniel Crossbreed",
+   "est": 878
+  },
+  {
+   "label": "Maltese Crossbreed",
+   "est": 873
+  },
+  {
+   "label": "Bichon Frise Crossbreed",
+   "est": 822
+  },
+  {
+   "label": "Cockapoo",
+   "est": 805
+  },
+  {
+   "label": "Morkie",
+   "est": 747
+  },
+  {
+   "label": "German Shepherd Crossbreed",
+   "est": 746
+  },
+  {
+   "label": "Jack Russell Terrier",
+   "est": 746
+  },
+  {
+   "label": "Boston Terrier",
+   "est": 708
+  },
+  {
+   "label": "Pembroke Welsh Corgi",
+   "est": 646
+  },
+  {
+   "label": "Pug",
+   "est": 634
+  }
+ ],
+ "max_dogs": 2663,
+ "max_density": 4594.4,
+ "people": 8796527,
+ "homes": 3369743,
+ "median_age": 7.0,
+ "complaints": 18609,
+ "complaints_placed": 18081,
+ "complaints_through": "August 2026",
+ "lapse_occasions": [
+  "2023",
+  "2024",
+  "2026"
+ ],
+ "lapse_cohort_births": [
+  2014,
+  2021
+ ],
+ "lapse_dogs_seen": 76937,
+ "lapse_holding_now": 47282,
+ "lapse_ratio": 1.95,
+ "lapse_ratio_common_names": 1.89,
+ "lapse_ratio_rare_names": 2.13
+}
