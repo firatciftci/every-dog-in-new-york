@@ -10,6 +10,7 @@ import type {
   Matrix,
   Shelter,
 } from "#lib/types.js";
+import { MIXES } from "#lib/breeds.js";
 import { cityRate } from "#lib/rate.js";
 import { chip, figure, place } from "#lib/sentence.js";
 import { change } from "#lib/stories.js";
@@ -562,7 +563,7 @@ function rank(all: Array<Hit>) {
 
 function subjectHits(ctx: SuggestContext, needle: string): Array<Hit> {
   const out: Array<Hit> = [];
-  const crossed = needle.replaceAll(/\b(?:mix|mixed|mutt)\b/g, "crossbreed");
+  const crossed = needle.replaceAll(MIXES, "crossbreed");
 
   for (const facet of FACETS) {
     const kind = facet === "breeds" ? "breed" : "name";
@@ -570,7 +571,10 @@ function subjectHits(ctx: SuggestContext, needle: string): Array<Hit> {
     for (const [label, column] of table) {
       const hit =
         facet === "breeds"
-          ? Math.max(score(label, needle), score(label, crossed))
+          ? Math.max(
+              score(label, needle),
+              score(label.replaceAll(MIXES, "crossbreed"), crossed),
+            )
           : score(label, needle);
       if (hit > 0) {
         out.push({

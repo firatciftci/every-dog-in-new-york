@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { MIXES } from "#lib/breeds.js";
   import Plate from "#lib/components/brand/plate.svelte";
   import { cn } from "#lib/utils.js";
 
@@ -19,7 +20,6 @@
       label: string;
       sub?: string;
       breed?: string;
-      also?: string;
     }>;
     value: string | null;
     fallback?: string;
@@ -42,16 +42,16 @@
       return options.slice(0, SHOWN);
     }
 
-    const words = q.split(/\s+/);
+    const words = q.replaceAll(MIXES, "crossbreed").split(/\s+/);
     const starts: Array<(typeof options)[number]> = [];
     const within: Array<(typeof options)[number]> = [];
     for (const option of options) {
       const name = option.label.toLowerCase();
-      const all = `${name} ${option.also ?? ""}`;
+      const plain = name.replaceAll(MIXES, "crossbreed");
       if (name.startsWith(q)) {
         starts.push(option);
       } else if (
-        words.every((word) => all.includes(word)) ||
+        words.every((word) => plain.includes(word)) ||
         (option.sub?.toLowerCase().startsWith(q) ?? false)
       ) {
         within.push(option);

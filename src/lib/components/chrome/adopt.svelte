@@ -48,7 +48,7 @@
   });
 
   const breeds = $derived([
-    { key: MIXED, label: MIXED, breed: MIXED, also: "mutt mix crossbreed" },
+    { key: MIXED, label: MIXED, breed: MIXED },
     ...Object.entries(matrix.breeds)
       .map(([label, row]) => {
         let total = 0;
@@ -56,13 +56,7 @@
           total += n;
         }
 
-        return {
-          key: label,
-          label,
-          breed: label,
-          also: label.includes("Crossbreed") ? "mix mutt" : undefined,
-          total,
-        };
+        return { key: label, label, breed: label, total };
       })
       .toSorted((a, b) => b.total - a.total),
   ]);

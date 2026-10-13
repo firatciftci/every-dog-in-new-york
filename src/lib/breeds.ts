@@ -1,3 +1,5 @@
+export const MIXES = /\b(?:mix|mixed|mutt)\b/gi;
+
 const PLATES: Record<string, string> = {
   "Labrador (or Crossbreed)": "retriever-labador",
   "Yorkshire Terrier": "yorkshire-terrier",
