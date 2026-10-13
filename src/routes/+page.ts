@@ -29,7 +29,7 @@ export const load: PageLoad = async ({ fetch }) => {
     railStops,
     dogs,
     details,
-    matrix,
+    { rare, ...matrix },
     summary,
     shelters,
     stories,
@@ -42,11 +42,22 @@ export const load: PageLoad = async ({ fetch }) => {
     fetchTopology<RailStations>(fetch, RAIL, "rail_stations"),
     fetchJson<DogScatter>(fetch, "/data/dogs.json"),
     fetchJson<Record<string, HoodDetail>>(fetch, "/data/details.json"),
-    fetchJson<Matrix>(fetch, "/data/matrix.json"),
+    fetchJson<Matrix & { rare: Record<string, Array<[number, number]>> }>(
+      fetch,
+      "/data/matrix.json",
+    ),
     fetchJson<Summary>(fetch, "/data/summary.json"),
     fetchJson<Array<Shelter>>(fetch, "/data/shelters.json"),
     fetchJson<Stories>(fetch, "/data/stories.json"),
   ]);
+
+  for (const [name, cells] of Object.entries(rare)) {
+    const column = matrix.slugs.map(() => 0);
+    for (const [at, n] of cells) {
+      column[at] = n;
+    }
+    matrix.names[name] = column;
+  }
 
   return {
     hoods: timed(hoods, stories),

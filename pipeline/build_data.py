@@ -63,6 +63,7 @@ M2_PER_MI2 = 2_589_988.11
 TOP_LABELS = 80
 
 NAME_FLOOR = 50
+RARE_FLOOR = 2
 NAME_MIN_COUNT, NAME_PRIOR = 4.0, 4.0
 BREED_MIN_COUNT, BREED_PRIOR = 8.0, 8.0
 LEADER_MIN_TOTAL = 20.0
@@ -906,6 +907,18 @@ def main():
             label: [round(hood_breeds.get(s, {}).get(label, 0.0), 1) for s in slugs] for label in breed_labels
         },
         "dogs": [round(hood_dogs.get(s, {}).get("n", 0.0), 1) for s in slugs],
+        "rare": {
+            label: cells
+            for label, c in city_names.most_common()
+            if RARE_FLOOR <= c < NAME_FLOOR
+            and (
+                cells := [
+                    [i, n]
+                    for i, s in enumerate(slugs)
+                    if (n := round(hood_names.get(s, {}).get(label, 0.0), 1)) > 0
+                ]
+            )
+        },
     }
     with open(os.path.join(WEB_DIR, "matrix.json"), "w") as fh:
         json.dump(matrix, fh, separators=(",", ":"))

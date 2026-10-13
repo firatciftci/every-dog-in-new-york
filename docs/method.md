@@ -12,7 +12,7 @@ The file also holds only about half the dogs that pass through licensing. [The u
 
 The pipeline pulls every row of the city's 2026 extract from NYC Open Data, 96,459 licenses. Each yearly file runs through the previous December 31, and the 2026 file includes some licenses that had already expired, so it is a record of recent licensing rather than a strict list of licenses in force.
 
-Two cleanups run before any counting. The name tallies drop `UNKNOWN` and `NAME NOT PROVIDED`, the two largest raw values. The pipeline merges breeds the city files under two spellings: `Terrier mix` into `Terrier Crossbreed` (together 2,705 licenses), `St. Bernard` into `Saint Bernard`, `Dalmatian Mix` into `Dalmatian Crossbreed`, and `Australian Cattledog` into `Australian Cattle Dog` (together 668 licenses). That leaves 347 breeds, all of which you can look up and map. A name stays if at least 50 dogs carry it, which keeps 305.
+Two cleanups run before any counting. The name tallies drop `UNKNOWN` and `NAME NOT PROVIDED`, the two largest raw values. The pipeline merges breeds the city files under two spellings: `Terrier mix` into `Terrier Crossbreed` (together 2,705 licenses), `St. Bernard` into `Saint Bernard`, `Dalmatian Mix` into `Dalmatian Crossbreed`, and `Australian Cattledog` into `Australian Cattle Dog` (together 668 licenses). That leaves 347 breeds, all of which you can look up and map. Every name at least two dogs carry can be looked up and mapped, 6,421 of them. The 305 names with at least 50 dogs get a full column in `matrix.json`, and the rest sit under its `rare` key, listing only the neighborhoods that hold them.
 
 The map shows a single breed or name as a rate per 1,000 dogs in each neighborhood. Rates under ten print with one decimal, so a thin breed like the Saint Bernard, at 0.46 per 1,000 citywide, does not round to zero.
 
@@ -103,7 +103,7 @@ A reader can put their own dogs on the map. They stay in the browser's local sto
 
 - **The name** count comes from `static/data/names.json`, which `build_stories.py` writes from the 2026 file: every cleaned name carried by at least two dogs, 6,424 of them. A name missing from it belongs to one licensed dog or none, so the card says "at most one".
 - **The age** line compares the dog's birth year with the birth years in the same file.
-- **Where they would blend in** scores each neighborhood with at least 150 estimated dogs by the breed's lift times the name's lift, using the same pull toward 1 as the distinctive layers (`k` of 8 for breeds and 4 for names). A name with fewer than 50 dogs has no neighborhood figures, so the score uses the breed alone.
+- **Where they would blend in** scores each neighborhood with at least 150 estimated dogs by the breed's lift times the name's lift, using the same pull toward 1 as the distinctive layers (`k` of 8 for breeds and 4 for names). A name carried by fewer than two dogs has no neighborhood figures, so the score uses the breed alone.
 
 ## The 311 layer
 
