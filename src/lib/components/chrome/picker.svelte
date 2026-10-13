@@ -63,7 +63,7 @@
   }
 </script>
 
-<div>
+<div data-reveal>
   <label for={id} class="slab text-[0.625rem] tracking-[0.13em] uppercase"
     >{label}</label
   >
@@ -81,7 +81,10 @@
       type="text"
       role="combobox"
       autocomplete="off"
+      autocapitalize="none"
+      autocorrect="off"
       spellcheck="false"
+      enterkeyhint="done"
       aria-expanded={open && hits.length > 0}
       aria-controls="{id}-list"
       aria-autocomplete="list"
@@ -91,7 +94,7 @@
       {placeholder}
       value={text}
       class={cn(
-        "h-10 w-full rounded-[5px] bg-background/70 pr-3 text-[0.875rem] text-foreground ring-1 ring-foreground/20 transition-shadow duration-200 contain-inline-size outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/60",
+        "h-10 w-full rounded-[5px] bg-background/70 pr-3 text-[0.875rem] text-foreground ring-1 ring-foreground/20 transition-shadow duration-200 contain-inline-size outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/60 any-pointer-coarse:text-base",
         {
           "pl-11": chosen?.breed != null && typed == null,
           "pl-3": chosen?.breed == null || typed != null,

@@ -107,6 +107,11 @@
   );
   const cohort = $derived(years.find((y) => y.year === born)?.n ?? 0);
 
+  let draft = $state<string | null>(null);
+  const stray = $derived(
+    draft?.length === 4 && (Number(draft) < FIRST_BORN || Number(draft) > NOW),
+  );
+
   function pickYear(event: PointerEvent & { currentTarget: HTMLElement }) {
     const box = event.currentTarget.getBoundingClientRect();
     const t = (event.clientX - box.left) / Math.max(1, box.width);
@@ -237,10 +242,18 @@
           type="text"
           autocomplete="off"
           spellcheck="false"
+          autocapitalize="words"
+          enterkeyhint="next"
           maxlength={NAME_LONGEST}
           placeholder="What do you call them?"
           bind:value={name}
-          class="mt-1 h-10 w-full rounded-[5px] bg-background/70 px-3 text-[0.875rem] text-foreground ring-1 ring-foreground/20 transition-shadow duration-200 contain-inline-size outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/60"
+          onkeydown={(event) => {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              document.getElementById("pet-breed")?.focus();
+            }
+          }}
+          class="mt-1 h-10 w-full rounded-[5px] bg-background/70 px-3 text-[0.875rem] text-foreground ring-1 ring-foreground/20 transition-shadow duration-200 contain-inline-size outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/60 any-pointer-coarse:text-base"
         />
         <p
           class="mt-1 min-h-lh text-[0.71875rem] leading-snug text-muted-foreground"
@@ -272,20 +285,79 @@
         }}
       />
 
-      <div>
-        <p
+      <div data-reveal>
+        <label
           id="pet-born-label"
+          for="pet-born"
           class="slab text-[0.625rem] tracking-[0.13em] uppercase"
         >
           Born
-        </p>
+        </label>
         <p class="mt-1 text-[0.8125rem] leading-snug text-foreground/85">
-          <strong class="numeric font-bold text-foreground">{born}</strong>, so
-          {ageWords}.
-          {#if cohort > 0}
+          <input
+            id="pet-born"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
+            enterkeyhint="done"
+            maxlength={4}
+            aria-invalid={stray}
+            value={draft ?? String(born)}
+            class={cn(
+              "-my-0.5 w-[4.05ch] rounded-t-[2px] border-b-[1.5px] border-dotted bg-transparent p-0 pt-px numeric text-base leading-tight font-bold transition-colors duration-200 outline-none focus:border-solid focus:bg-primary/8",
+              {
+                "border-primary text-foreground focus:text-primary": !stray,
+                "border-muted-foreground text-muted-foreground": stray,
+              },
+            )}
+            onfocus={(event) => {
+              event.currentTarget.select();
+            }}
+            onblur={() => {
+              draft = null;
+            }}
+            oninput={(event) => {
+              const digits = event.currentTarget.value
+                .replace(/\D/g, "")
+                .slice(0, 4);
+              event.currentTarget.value = digits;
+              draft = digits;
+              const year = Number(digits);
+              if (digits.length === 4 && year >= FIRST_BORN && year <= NOW) {
+                born = year;
+              }
+            }}
+            onkeydown={(event) => {
+              const step =
+                event.key === "ArrowUp"
+                  ? 1
+                  : event.key === "ArrowDown"
+                    ? -1
+                    : 0;
+              if (step !== 0) {
+                event.preventDefault();
+                draft = null;
+                born = Math.min(NOW, Math.max(FIRST_BORN, born + step));
+              } else if (event.key === "Enter") {
+                event.preventDefault();
+                event.currentTarget.blur();
+              } else if (event.key === "Escape" && draft != null) {
+                event.preventDefault();
+                event.stopPropagation();
+                draft = null;
+              }
+            }}
+          />{#if stray}{" "}is out of range.
             <span class="text-muted-foreground"
-              >{count(cohort)} licensed dogs share the year.</span
+              >Pick a year from {FIRST_BORN} to {NOW}.</span
             >
+          {:else}, so
+            {ageWords}.
+            {#if cohort > 0}
+              <span class="text-muted-foreground"
+                >{count(cohort)} licensed dogs share the year.</span
+              >
+            {/if}
           {/if}
         </p>
         <div

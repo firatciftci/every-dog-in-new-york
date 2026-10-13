@@ -434,7 +434,7 @@
           ? "Look up a breed, a name, or a place"
           : `Look up a ${SCOPE_NAMES[scope][0]}`
         : `Compare ${waiting} with…`}
-      class="w-full bg-transparent text-[0.84375rem] text-foreground placeholder:text-muted-foreground focus:outline-none"
+      class="w-full bg-transparent text-[0.84375rem] text-foreground placeholder:text-muted-foreground focus:outline-none any-pointer-coarse:text-base"
     />
     {#if asked}
       <button

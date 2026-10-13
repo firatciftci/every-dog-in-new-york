@@ -438,7 +438,7 @@
               list="borough-names"
               bind:value={typed}
               autocomplete="off"
-              class="h-8 w-36 rounded-[3px] bg-background px-2 text-[0.875rem] ring-1 ring-foreground/20 outline-none focus-visible:ring-primary"
+              class="h-8 w-36 rounded-[3px] bg-background px-2 text-[0.875rem] ring-1 ring-foreground/20 outline-none focus-visible:ring-primary any-pointer-coarse:text-base"
             />
             <datalist id="borough-names">
               {#each [...table.names.keys()].toSorted() as name (name)}

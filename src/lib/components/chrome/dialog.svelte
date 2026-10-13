@@ -39,6 +39,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import { XIcon } from "@lucide/svelte";
+  import { on } from "svelte/events";
   import { MediaQuery } from "svelte/reactivity";
   import { fade, fly } from "svelte/transition";
   import { scrollEdges } from "#lib/scroll.js";
@@ -61,6 +62,75 @@
   const calm = new MediaQuery("(prefers-reduced-motion: reduce)");
 
   let card: HTMLDivElement | null = null;
+  let scroller: HTMLDivElement | null = null;
+  let frame = 0;
+  let settle = 0;
+
+  function reveal() {
+    const field = document.activeElement;
+    if (
+      scroller == null ||
+      !(field instanceof HTMLInputElement) ||
+      !scroller.contains(field)
+    ) {
+      return;
+    }
+
+    const target = field.closest<HTMLElement>("[data-reveal]") ?? field;
+    const box = scroller.getBoundingClientRect();
+    const span = target.getBoundingClientRect();
+    const above = span.top - box.top - 24;
+    const below = span.bottom - box.bottom + 40;
+    const shift = below > 0 ? Math.min(below, above) : Math.min(above, 0);
+    if (shift !== 0) {
+      scroller.scrollBy({
+        top: shift,
+        behavior: calm.current ? "instant" : "smooth",
+      });
+    }
+  }
+
+  function revealSoon() {
+    cancelAnimationFrame(frame);
+    clearTimeout(settle);
+    frame = requestAnimationFrame(reveal);
+    // iOS runs its own focus scroll after ours and cancels it.
+    settle = window.setTimeout(reveal, 360);
+  }
+
+  // iOS keeps the layout viewport under the keyboard and pans the page instead, so the overlay follows the visual viewport.
+  function follow(node: HTMLDivElement) {
+    const port = window.visualViewport;
+    if (port == null) {
+      return;
+    }
+
+    const measure = () => {
+      if (window.scrollY !== 0) {
+        window.scrollTo(0, 0);
+      }
+
+      node.style.top = `${port.offsetTop}px`;
+      node.style.height = `${port.height}px`;
+      node.style.setProperty("--room", `${port.height}px`);
+      revealSoon();
+    };
+
+    measure();
+    const off = [
+      on(port, "resize", measure),
+      on(port, "scroll", measure),
+      on(window, "scroll", measure),
+    ];
+
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(settle);
+      for (const end of off) {
+        end();
+      }
+    };
+  }
 
   function hold(node: HTMLDivElement) {
     card = node;
@@ -98,8 +168,9 @@
 <svelte:window onkeydown={trap} />
 
 <div
+  {@attach follow}
   transition:fade={{ duration: 180 }}
-  class="absolute inset-0 z-50 grid place-items-center bg-black/50 px-4 py-8 backdrop-blur-[3px] @max-xs:px-2"
+  class="absolute inset-x-0 top-0 z-50 grid h-full place-items-center bg-black/50 px-4 py-8 backdrop-blur-[3px] @max-xs:px-2"
 >
   <button
     type="button"
@@ -117,8 +188,10 @@
     {@attach hold}
     in:open={{ from, calm: calm.current }}
     out:fly={{ y: 18, duration: 220, easing: cubicOut }}
+    onfocusin={revealSoon}
+    oninput={revealSoon}
     class={cn(
-      "relative flex max-h-[86dvh] w-full rotate-[-0.9deg] flex-col drop-shadow-[0_16px_26px_rgb(30_26_20/0.45)] outline-none",
+      "relative flex max-h-[min(86dvh,calc(var(--room,100dvh)_-_4rem))] w-full rotate-[-0.9deg] flex-col drop-shadow-[0_16px_26px_rgb(30_26_20/0.45)] outline-none",
       {
         "max-w-sm": size === "sm",
         "max-w-lg": size === "lg",
@@ -142,6 +215,7 @@
       <!-- Mask on a static wrapper, not the scroller: a masked scroll container loses Chrome's composited scrolling. -->
       <div class="flex min-h-0 scroll-fade-y flex-col">
         <div
+          bind:this={scroller}
           {@attach scrollEdges()}
           class="min-h-0 overflow-y-auto overscroll-contain px-6 pt-5 pb-9 has-data-pinned:pb-0 @max-xs:px-4"
         >
