@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { MailIcon } from "@lucide/svelte";
   import { slide } from "svelte/transition";
   import Shahmaran from "#lib/components/brand/shahmaran.svelte";
   import Newsletter from "#lib/components/chrome/newsletter.svelte";
@@ -60,13 +61,14 @@
   {:else}
     <button
       type="button"
-      class="group mt-1 inline-flex items-baseline gap-1 text-[0.71875rem] leading-relaxed text-cobalt underline decoration-cobalt/40 underline-offset-2 hover:decoration-cobalt"
+      class="group mt-1 inline-flex items-center gap-1.5 text-[0.71875rem] leading-relaxed text-cobalt underline decoration-cobalt/40 underline-offset-2 hover:decoration-cobalt"
       onclick={() => {
         asking = true;
       }}
-      ><Shahmaran
-        height={12}
-        class="translate-y-0.5 transition-transform duration-200 group-hover:translate-y-0"
+      ><MailIcon
+        aria-hidden="true"
+        class="size-3.5 shrink-0 transition-transform duration-200 group-hover:-rotate-8"
+        strokeWidth={1.75}
       />Hear about my next project</button
     >
   {/if}

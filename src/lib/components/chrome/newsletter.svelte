@@ -44,6 +44,10 @@
         name="email"
         required
         autocomplete="email"
+        data-1p-ignore
+        data-lpignore="true"
+        data-bwignore
+        data-form-type="other"
         spellcheck="false"
         placeholder="you@example.com"
         autofocus={eager}
