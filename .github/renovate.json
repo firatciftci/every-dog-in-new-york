@@ -42,6 +42,17 @@
     },
     { "groupName": "GitHub Actions", "matchManagers": ["github-actions"] },
     {
+      "description": "requires-python is a floor, and .python-version moves only when the pipeline is tested on a new Python.",
+      "matchDepNames": ["python"],
+      "matchManagers": ["pep621", "pyenv"],
+      "enabled": false
+    },
+    {
+      "description": "Keep .nvmrc on the major line so it follows every Node 24 release.",
+      "matchManagers": ["nvm"],
+      "rangeStrategy": "replace"
+    },
+    {
       "groupName": "Svelte",
       "matchPackageNames": ["svelte", "svelte-check", "@sveltejs/**"],
       "matchUpdateTypes": ["major"]
