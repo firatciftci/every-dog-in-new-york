@@ -84,8 +84,11 @@
       <p
         class="flex items-baseline gap-1 text-[0.71875rem] leading-relaxed text-cobalt"
       >
-        <Shahmaran height={12} class="shrink-0 translate-y-0.5" />I’ll email you
-        when I finish my next project.
+        <MailIcon
+          aria-hidden="true"
+          class="size-3.5 shrink-0 translate-y-0.75 transition-transform duration-200 group-hover:-rotate-8"
+          strokeWidth={1.75}
+        />I’ll email you when I finish my next project.
       </p>
       <Newsletter from="everydog" />
     </div>
