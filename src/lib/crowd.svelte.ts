@@ -3,19 +3,20 @@ import { on } from "svelte/events";
 import type { Heard, Kind, Peer, Ride, Shown, Told } from "#lib/crowd.js";
 
 const HIDDEN = "edny:crowd-hidden";
+const OFF = "edny:crowd-off";
 const PING = 50_000;
 const AWAY = 60_000;
 const FIRST_WAIT = 2000;
 const LONGEST_WAIT = 120_000;
 const MOST_HELLOS = 3;
 
-function readHidden() {
+function readFlag(key: string) {
   if (!browser) {
     return false;
   }
 
   try {
-    return localStorage.getItem(HIDDEN) === "1";
+    return localStorage.getItem(key) === "1";
   } catch {
     return false;
   }
@@ -26,7 +27,8 @@ function readHidden() {
  */
 class Crowd {
   #count = 0;
-  #hidden = $state(readHidden());
+  #hidden = $state(readFlag(HIDDEN));
+  #off = $state(readFlag(OFF));
   #you: string | null = null;
   #socket: WebSocket | null = null;
   #dogs: Array<Shown> = [];
@@ -244,6 +246,31 @@ class Crowd {
         localStorage.setItem(HIDDEN, "1");
       } else {
         localStorage.removeItem(HIDDEN);
+      }
+    } catch {
+      // Storage access throws in private mode and locked-down browsers.
+    }
+  }
+
+  /**
+   * Other readers switched off entirely: no socket, no dots, no hellos.
+   * The map's join effect reads this, so flipping it closes or reopens the socket.
+   */
+  get off() {
+    return this.#off;
+  }
+
+  set off(on: boolean) {
+    this.#off = on;
+    if (on) {
+      this.peers = [];
+      this.hellos = [];
+    }
+    try {
+      if (on) {
+        localStorage.setItem(OFF, "1");
+      } else {
+        localStorage.removeItem(OFF);
       }
     } catch {
       // Storage access throws in private mode and locked-down browsers.

@@ -174,7 +174,7 @@
   const live = $derived(loaded ? (map ?? null) : null);
 
   $effect(() => {
-    if (live == null) {
+    if (live == null || crowd.off) {
       return;
     }
 

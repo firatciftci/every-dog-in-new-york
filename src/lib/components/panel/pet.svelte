@@ -567,7 +567,9 @@
   <p class="mt-4 text-[0.71875rem] leading-snug text-muted-foreground">
     {dog.name} is saved only in this browser and is not counted in any figure on the
     map.
-    {#if crowd.hidden}
+    {#if crowd.off}
+      You stopped seeing other readers’ dogs, and they do not see yours.
+    {:else if crowd.hidden}
       Other readers cannot see your dogs.
     {:else}
       While the map is open, other readers see {dog.name} as a small dot in {den.hood}
@@ -581,10 +583,18 @@
       type="button"
       class="cursor-pointer text-primary underline decoration-primary/45 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:decoration-primary"
       onclick={() => {
-        crowd.hidden = !crowd.hidden;
+        if (crowd.off) {
+          crowd.off = false;
+        } else {
+          crowd.hidden = !crowd.hidden;
+        }
       }}
     >
-      {crowd.hidden ? "Show them again" : "Hide your dogs from other readers"}
+      {#if crowd.off}
+        See them again
+      {:else}
+        {crowd.hidden ? "Show them again" : "Hide your dogs from other readers"}
+      {/if}
     </button>
   </p>
 </section>

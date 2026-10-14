@@ -145,4 +145,15 @@
       {/if}
     </div>
   {/if}
+
+  <button
+    type="button"
+    title="Your dog’s card brings them back."
+    class="mt-2.5 cursor-pointer text-[0.6875rem] leading-snug text-muted-foreground underline decoration-current/40 decoration-dotted underline-offset-[3px] transition-colors duration-200 hover:text-foreground hover:decoration-current"
+    onclick={() => {
+      crowd.off = true;
+    }}
+  >
+    Stop seeing other readers’ dogs
+  </button>
 </div>
