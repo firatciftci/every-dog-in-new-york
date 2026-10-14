@@ -1,11 +1,37 @@
 <script lang="ts">
   import { MailIcon } from "@lucide/svelte";
+  import { flushSync } from "svelte";
+  import { on } from "svelte/events";
+  import { prefersReducedMotion } from "svelte/motion";
   import { slide } from "svelte/transition";
   import Shahmaran from "#lib/components/brand/shahmaran.svelte";
   import Newsletter from "#lib/components/chrome/newsletter.svelte";
   import { explorer } from "#lib/state.svelte.js";
 
   let asking = $state(false);
+  let ask: HTMLDivElement | null = null;
+
+  function show(node: HTMLElement) {
+    node.scrollIntoView({
+      block: "end",
+      behavior: prefersReducedMotion.current ? "instant" : "smooth",
+    });
+  }
+
+  // The sheet shrinks to the visual viewport when the iOS keyboard opens, so the field scrolls back into what is left.
+  function keep(node: HTMLDivElement) {
+    ask = node;
+    const port = window.visualViewport;
+    if (port == null) {
+      return;
+    }
+
+    return on(port, "resize", () => {
+      if (node.contains(document.activeElement)) {
+        requestAnimationFrame(() => show(node));
+      }
+    });
+  }
 </script>
 
 <footer class="shrink-0 border-t rule px-5 py-2.5">
@@ -49,14 +75,19 @@
     >.
   </p>
   {#if asking}
-    <div transition:slide={{ duration: 260 }} class="pt-2 pb-1">
+    <div
+      {@attach keep}
+      transition:slide={{ duration: 260 }}
+      onintroend={(event) => show(event.currentTarget)}
+      class="scroll-mb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 pb-1"
+    >
       <p
         class="flex items-baseline gap-1 text-[0.71875rem] leading-relaxed text-cobalt"
       >
         <Shahmaran height={12} class="shrink-0 translate-y-0.5" />I’ll email you
         when I finish my next project.
       </p>
-      <Newsletter from="everydog" eager />
+      <Newsletter from="everydog" />
     </div>
   {:else}
     <button
@@ -64,6 +95,10 @@
       class="group mt-1 inline-flex items-center gap-1.5 text-[0.71875rem] leading-relaxed text-cobalt underline decoration-cobalt/40 underline-offset-2 hover:decoration-cobalt"
       onclick={() => {
         asking = true;
+        flushSync();
+        ask
+          ?.querySelector<HTMLInputElement>("input[type=email]")
+          ?.focus({ preventScroll: true });
       }}
       ><MailIcon
         aria-hidden="true"

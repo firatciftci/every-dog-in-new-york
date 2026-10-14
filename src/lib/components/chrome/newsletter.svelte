@@ -4,7 +4,7 @@
   const ENDPOINT =
     "https://buttondown.com/api/emails/embed-subscribe/firatciftci";
 
-  let { from, eager = false }: { from: string; eager?: boolean } = $props();
+  let { from }: { from: string } = $props();
 
   const id = $props.id();
   let phase = $state<"idle" | "sending" | "done" | "failed">("idle");
@@ -37,7 +37,6 @@
   {#if phase !== "done"}
     <div class="flex items-baseline gap-3">
       <label for="{id}-email" class="sr-only">Your email address</label>
-      <!-- svelte-ignore a11y_autofocus -->
       <input
         id="{id}-email"
         type="email"
@@ -50,7 +49,6 @@
         data-form-type="other"
         spellcheck="false"
         placeholder="you@example.com"
-        autofocus={eager}
         class="h-9 min-w-0 flex-1 rounded-none border-0 border-b-2 border-cobalt/45 bg-transparent px-0.5 pb-0.5 font-serif text-[0.9375rem] text-foreground transition-colors duration-200 placeholder:text-muted-foreground hover:border-cobalt/70 focus:border-cobalt focus:outline-none"
       />
       <button
