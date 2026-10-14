@@ -1,6 +1,10 @@
 <script lang="ts">
+  import { slide } from "svelte/transition";
   import Shahmaran from "#lib/components/brand/shahmaran.svelte";
+  import Newsletter from "#lib/components/chrome/newsletter.svelte";
   import { explorer } from "#lib/state.svelte.js";
+
+  let asking = $state(false);
 </script>
 
 <footer class="shrink-0 border-t rule px-5 py-2.5">
@@ -43,4 +47,27 @@
       />Firat Ciftci</button
     >.
   </p>
+  {#if asking}
+    <div transition:slide={{ duration: 260 }} class="pt-2 pb-1">
+      <p
+        class="flex items-baseline gap-1 text-[0.71875rem] leading-relaxed text-cobalt"
+      >
+        <Shahmaran height={12} class="shrink-0 translate-y-0.5" />I’ll email you
+        when I finish my next project.
+      </p>
+      <Newsletter from="everydog" eager />
+    </div>
+  {:else}
+    <button
+      type="button"
+      class="group mt-1 inline-flex items-baseline gap-1 text-[0.71875rem] leading-relaxed text-cobalt underline decoration-cobalt/40 underline-offset-2 hover:decoration-cobalt"
+      onclick={() => {
+        asking = true;
+      }}
+      ><Shahmaran
+        height={12}
+        class="translate-y-0.5 transition-transform duration-200 group-hover:translate-y-0"
+      />Hear about my next project</button
+    >
+  {/if}
 </footer>

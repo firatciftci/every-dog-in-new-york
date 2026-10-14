@@ -21,6 +21,7 @@
 <script lang="ts">
   import Shahmaran from "#lib/components/brand/shahmaran.svelte";
   import Dialog from "#lib/components/chrome/dialog.svelte";
+  import Newsletter from "#lib/components/chrome/newsletter.svelte";
   import { explorer } from "#lib/state.svelte.js";
   import { cn } from "#lib/utils.js";
 
@@ -300,6 +301,13 @@
       </a>
     {/each}
     <span role="status" class="sr-only">{copied ? "Copied" : ""}</span>
+  </div>
+
+  <div class="mt-6 border-t rule pt-4">
+    <p class="mb-1 text-[0.9375rem] leading-snug text-foreground/85">
+      Leave your email, and I’ll write when I finish my next project.
+    </p>
+    <Newsletter from="everydog" />
   </div>
 
   <p class="mt-6 text-[0.71875rem] leading-snug text-muted-foreground">
